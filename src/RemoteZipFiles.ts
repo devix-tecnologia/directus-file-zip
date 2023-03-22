@@ -1,11 +1,15 @@
 import { IBaseZipClass, IDirectusFile, IZipConfig } from './types/types';
 import { randomUUID } from 'crypto';
 import { resolve } from 'path';
-import { createWriteStream } from 'node:fs';
+import { createWriteStream, existsSync, mkdirSync, rmSync } from 'node:fs';
 import axios from 'axios';
 import AdmZip from 'adm-zip';
 import { readdir, readFile } from 'node:fs/promises';
 
+/**
+ * Downloads Directus files, zips them, and uploads to Directus
+ * @returns string | Uploaded file UUID
+ */
 class RemoteZipFiles implements IBaseZipClass {
   private _token: string;
   private _filesUUID: string[];
@@ -20,13 +24,18 @@ class RemoteZipFiles implements IBaseZipClass {
     this._baseURL = config.baseURL;
     this._filesUUID = filesUUID;
     this._tempFolder = resolve(__dirname, 'temp', randomUUID());
+    this.createTempFolder();
   }
 
   async zip(zipFilename: string, fileTitle: string = zipFilename): Promise<string> {
     await this.downloadFiles();
     await this.compressFile(zipFilename);
-    return await this.uploadZip(zipFilename, fileTitle);
+    const uploadedFile = await this.uploadZip(zipFilename, fileTitle);
+    this.emptyTempFolder();
+    return uploadedFile.data.id;
   }
+
+  // PRIVATE METHODS
 
   private async downloadFiles() {
     await Promise.all(
@@ -68,11 +77,13 @@ class RemoteZipFiles implements IBaseZipClass {
 
   private async compressFile(zipFilename: string) {
     let zip = new AdmZip();
-    (await this.readFilesFromFolder()).forEach((file) => zip.addLocalFile(file));
-    zip.writeZip(zipFilename);
+    (await this.readFilesFromFolder()).forEach((file) => {
+      zip.addLocalFile(file);
+    });
+    zip.writeZip(this.getFileFullPath(zipFilename));
   }
 
-  async uploadZip(filename: string, title: string): Promise<string> {
+  private async uploadZip(filename: string, title: string): Promise<IDirectusFile> {
     const url = `${this._baseURL}/files`;
     const filePath = this.getFileFullPath(filename);
     const fileBuffer = await readFile(filePath);
@@ -89,16 +100,31 @@ class RemoteZipFiles implements IBaseZipClass {
         Authorization: `Bearer ${this._token}`,
       },
     });
-    console.log(response.data);
-    return response.data.id;
+    return response.data;
   }
 
   private async readFilesFromFolder() {
-    return await readdir(this._tempFolder);
+    const filenames = await readdir(this._tempFolder);
+    return filenames.map((file) => this.getFileFullPath(file));
   }
 
   private getFileFullPath(filename: string) {
     return resolve(this._tempFolder, filename);
+  }
+
+  private createTempFolder() {
+    if (!existsSync(this._tempFolder)) {
+      mkdirSync(this._tempFolder, { recursive: true });
+    }
+  }
+
+  private emptyTempFolder() {
+    rmSync(this._tempFolder, {
+      recursive: true,
+      force: true,
+      maxRetries: 2,
+      retryDelay: 1000,
+    });
   }
 }
 
