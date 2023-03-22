@@ -30,6 +30,7 @@
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",
     "assert": "^1.4.1",
+    "dotenv": "^16.0.3",
     "jest": "^29.4.1",
     "semantic-release": "^20.1.0",
     "ts-jest": "^29.0.5",

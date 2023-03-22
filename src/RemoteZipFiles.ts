@@ -28,11 +28,19 @@ class RemoteZipFiles implements IBaseZipClass {
   }
 
   async zip(zipFilename: string, fileTitle: string = zipFilename): Promise<string> {
-    await this.downloadFiles();
-    await this.compressFile(zipFilename);
-    const uploadedFile = await this.uploadZip(zipFilename, fileTitle);
-    this.emptyTempFolder();
-    return uploadedFile.data.id;
+    let uploadedFileUUID: string | null = null;
+    try {
+      await this.downloadFiles();
+      await this.compressFile(zipFilename);
+      const uploadResponse = await this.uploadZip(zipFilename, fileTitle);
+      this.emptyTempFolder();
+      uploadedFileUUID = uploadResponse.data.id;
+    } catch (err) {
+      throw err;
+    } finally {
+      this.emptyTempFolder();
+    }
+    return uploadedFileUUID;
   }
 
   // PRIVATE METHODS
