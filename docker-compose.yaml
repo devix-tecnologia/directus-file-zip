@@ -1,0 +1,48 @@
+version: '3'
+services:
+  database:
+    image: postgis/postgis:15-3.3-alpine
+    restart: unless-stopped
+
+    environment:
+      - POSTGRES_DB=directus
+      - POSTGRES_USER=directus
+      - POSTGRES_PASSWORD=directus
+    ports:
+      - 5432:5432
+
+    networks:
+      - directus-network
+
+  directus:
+    restart: unless-stopped
+    image: directus/directus:9.23.1
+    env_file: .env.dev
+
+    ports:
+      - 8055:8055
+
+    depends_on:
+      - database
+
+    networks:
+      - directus-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    volumes:
+      - ./data/pgadmin4_data:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=directus
+      - PGADMIN_DEFAULT_EMAIL=dev@devix.co
+    restart: unless-stopped
+    depends_on:
+      - database
+    ports:
+      - 16543:80
+    networks:
+      - directus-network
+
+networks:
+  directus-network:
+    driver: bridge
