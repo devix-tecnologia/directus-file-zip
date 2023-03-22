@@ -1,3 +1,4 @@
+import { BackendZipFiles } from './BackendZipFiles';
 import { RemoteZipFiles } from './RemoteZipFiles';
 import { IZipConfig } from './types/types';
 
@@ -8,7 +9,7 @@ async function directusZipFiles(
   config: IZipConfig,
 ) {
   if (config.ApiExtensionContext) {
-    throw new Error('Not yet implemented');
+    return new BackendZipFiles(filesUUID, config).zip(zipFilename, zipFileTitle);
   }
   if (config.accessToken) {
     return new RemoteZipFiles(filesUUID, config).zip(zipFilename, zipFileTitle);

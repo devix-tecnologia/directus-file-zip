@@ -3,7 +3,8 @@ import { ApiExtensionContext } from '@directus/shared/types';
 interface IZipConfig {
   accessToken?: string;
   ApiExtensionContext?: ApiExtensionContext;
-  baseURL: string;
+  storage?: string;
+  baseURL?: string;
 }
 
 interface IBaseZipClass {

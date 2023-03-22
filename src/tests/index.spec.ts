@@ -25,6 +25,7 @@ describe('directusZipFiles', () => {
         baseURL: process.env.PUBLIC_URL ?? 'http://localhost:8055',
       },
     );
+    if (!res) throw new Error('Axios failed');
     const fileDetails = await getFileDetails(res);
     expect(res).not.toBeNull();
     expect(fileDetails.data.filename_download).toBe('compressed.zip');
