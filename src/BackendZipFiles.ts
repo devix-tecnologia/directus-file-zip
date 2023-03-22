@@ -1,31 +1,21 @@
 import { ApiExtensionContext } from '@directus/shared/types';
-import { resolve } from 'path';
-import { randomUUID } from 'node:crypto';
-import {
-  createReadStream,
-  createWriteStream,
-  existsSync,
-  mkdirSync,
-  rmSync,
-} from 'node:fs';
-import { IZipConfig, IBaseZipClass } from './types/types';
-import AdmZip from 'adm-zip';
-import { readdir } from 'fs/promises';
+import { createReadStream, createWriteStream } from 'node:fs';
+import { IZipConfig } from './types/types';
+import { BaseZipFiles } from './BaseZipFiles';
 
-class BackendZipFiles implements IBaseZipClass {
+class BackendZipFiles extends BaseZipFiles {
   private _ApiExtensionContext: ApiExtensionContext;
   private _filesUUID: string[];
-  private _tempFolder: string;
   private _defaultStorage: string | undefined;
 
   constructor(filesUUID: string[], config: IZipConfig) {
+    super();
     if (!config.ApiExtensionContext)
       throw new Error('You must provide ApiExtensionContext in the config parameter');
 
     this._ApiExtensionContext = config.ApiExtensionContext;
     this._filesUUID = filesUUID;
     this._defaultStorage = config.storage ?? 'local';
-    this._tempFolder = resolve(__dirname, 'temp', randomUUID());
     this.createTempFolder();
   }
 
@@ -83,40 +73,6 @@ class BackendZipFiles implements IBaseZipClass {
     return new Promise((resolve, reject) => {
       writeStream.on('finish', resolve);
       writeStream.on('error', reject);
-    });
-  }
-
-  // TO PARENT CLASS
-
-  private async compressFile(zipFilename: string) {
-    let zip = new AdmZip();
-    (await this.readFilesFromFolder()).forEach((file) => {
-      zip.addLocalFile(file);
-    });
-    zip.writeZip(this.getFileFullPath(zipFilename));
-  }
-
-  private async readFilesFromFolder() {
-    const filenames = await readdir(this._tempFolder);
-    return filenames.map((file) => this.getFileFullPath(file));
-  }
-
-  private createTempFolder() {
-    if (!existsSync(this._tempFolder)) {
-      mkdirSync(this._tempFolder, { recursive: true });
-    }
-  }
-
-  private getFileFullPath(filename: string) {
-    return resolve(this._tempFolder, filename);
-  }
-
-  private emptyTempFolder() {
-    rmSync(this._tempFolder, {
-      recursive: true,
-      force: true,
-      maxRetries: 2,
-      retryDelay: 1000,
     });
   }
 }

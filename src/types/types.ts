@@ -7,10 +7,6 @@ interface IZipConfig {
   baseURL?: string;
 }
 
-interface IBaseZipClass {
-  zip(zipFilename: string, fileTitle: string): Promise<string>;
-}
-
 interface IDirectusFile {
   data: {
     id: string;
@@ -37,4 +33,4 @@ interface IDirectusFile {
   };
 }
 
-export type { IZipConfig, IBaseZipClass, IDirectusFile };
+export type { IZipConfig, IDirectusFile };

@@ -1,29 +1,27 @@
-import { IBaseZipClass, IDirectusFile, IZipConfig } from './types/types';
-import { randomUUID } from 'crypto';
+import { IDirectusFile, IZipConfig } from './types/types';
 import { resolve } from 'path';
-import { createWriteStream, existsSync, mkdirSync, rmSync } from 'node:fs';
+import { createWriteStream } from 'node:fs';
 import axios from 'axios';
-import AdmZip from 'adm-zip';
-import { readdir, readFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
+import { BaseZipFiles } from './BaseZipFiles';
 
 /**
  * Downloads Directus files, zips them, and uploads to Directus
  * @returns string | Uploaded file UUID
  */
-class RemoteZipFiles implements IBaseZipClass {
+class RemoteZipFiles extends BaseZipFiles {
   private _token: string;
   private _filesUUID: string[];
   private _baseURL: string;
-  private _tempFolder: string;
 
   constructor(filesUUID: string[], config: IZipConfig) {
+    super();
     if (!config.accessToken || !config.baseURL)
       throw new Error('You must provide access token in the config parameter');
 
     this._token = config.accessToken;
     this._baseURL = config.baseURL;
     this._filesUUID = filesUUID;
-    this._tempFolder = resolve(__dirname, 'temp', randomUUID());
     this.createTempFolder();
   }
 
@@ -83,14 +81,6 @@ class RemoteZipFiles implements IBaseZipClass {
     return response.data;
   }
 
-  private async compressFile(zipFilename: string) {
-    let zip = new AdmZip();
-    (await this.readFilesFromFolder()).forEach((file) => {
-      zip.addLocalFile(file);
-    });
-    zip.writeZip(this.getFileFullPath(zipFilename));
-  }
-
   private async uploadZip(filename: string, title: string): Promise<IDirectusFile> {
     const url = `${this._baseURL}/files`;
     const filePath = this.getFileFullPath(filename);
@@ -109,30 +99,6 @@ class RemoteZipFiles implements IBaseZipClass {
       },
     });
     return response.data;
-  }
-
-  private async readFilesFromFolder() {
-    const filenames = await readdir(this._tempFolder);
-    return filenames.map((file) => this.getFileFullPath(file));
-  }
-
-  private getFileFullPath(filename: string) {
-    return resolve(this._tempFolder, filename);
-  }
-
-  private createTempFolder() {
-    if (!existsSync(this._tempFolder)) {
-      mkdirSync(this._tempFolder, { recursive: true });
-    }
-  }
-
-  private emptyTempFolder() {
-    rmSync(this._tempFolder, {
-      recursive: true,
-      force: true,
-      maxRetries: 2,
-      retryDelay: 1000,
-    });
   }
 }
 
