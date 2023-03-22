@@ -1,7 +1,7 @@
 {
   "name": "@devix/directus-file-zip",
   "version": "1.0.0",
-  "description": "Zips files from Directus Assests into a ZIP file",
+  "description": "Creates a zip from files and saves to Directus Assets",
   "main": "./dist/index.js",
   "types": "./dist/cjs/types/index.d.ts",
   "files": [
