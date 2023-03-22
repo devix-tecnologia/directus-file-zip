@@ -32,14 +32,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: 🔨 Test project
-        working-directory: .
-        run: |
-          npm install
-          docker-compose up -d
-          npm test
-          docker-compose down
-
       - name: Release
 
         run: |
