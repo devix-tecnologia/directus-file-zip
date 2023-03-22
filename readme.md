@@ -21,6 +21,8 @@ This package can be used inside a Directus Backend or outside using the REST API
 ### Using inside Directus (ie. Extension Endpoint):
 
 ```ts
+import { directusZipFiles } from '@devix/directus-file-zip';
+
 export default defineEndpoint((router, ctx) => {
   router.get('/', async (_req, res) => {
     // In this example we zip all the files in Directus storage
