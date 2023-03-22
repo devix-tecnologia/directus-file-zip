@@ -33,3 +33,10 @@ const uploadedFileUUID = await directusZipFiles(
   config,
 );
 ```
+
+## Test with Directus:
+
+- Start Docker-compose `docker-compose up -d`
+- Go to Directus Admin and create an access token
+- Write the token to the .env.dev file -> DIRECTUS_ACCESS_TOKEN: "xxxxxx"
+- `npm test`
