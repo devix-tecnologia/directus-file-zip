@@ -1,8 +1,8 @@
-import { BackendZipFiles } from './BackendZipFiles';
-import { RemoteZipFiles } from './RemoteZipFiles';
-import { IZipConfig } from './types/types';
+import BackendZipFiles from './BackendZipFiles.js';
+import RemoteZipFiles from './RemoteZipFiles.js';
+import type { IZipConfig } from './types/types';
 
-async function directusZipFiles(
+export async function directusZipFiles(
   filesUUID: string[],
   zipFilename: string,
   zipFileTitle: string,
@@ -19,5 +19,3 @@ async function directusZipFiles(
     'You have to specify in the config either accessToken or the ApiExtensionContext',
   );
 }
-
-export { directusZipFiles };

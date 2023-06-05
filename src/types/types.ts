@@ -1,13 +1,13 @@
 import { ApiExtensionContext } from '@directus/shared/types';
 
-interface IZipConfig {
+export interface IZipConfig {
   accessToken?: string;
   ApiExtensionContext?: ApiExtensionContext;
   storage?: string;
   baseURL?: string;
 }
 
-interface IDirectusFile {
+export interface IDirectusFile {
   data: {
     id: string;
     storage: string;
@@ -32,5 +32,3 @@ interface IDirectusFile {
     metadata: string | null;
   };
 }
-
-export type { IZipConfig, IDirectusFile };
