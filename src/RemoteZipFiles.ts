@@ -1,15 +1,15 @@
-import { IDirectusFile, IZipConfig } from './types/types';
+import type { IDirectusFile, IZipConfig } from './types/types';
 import { resolve } from 'path';
 import { createWriteStream } from 'node:fs';
 import axios from 'axios';
 import { readFile } from 'node:fs/promises';
-import { BaseZipFiles } from './BaseZipFiles';
+import { BaseZipFiles } from './BaseZipFiles.js';
 
 /**
  * Downloads Directus files, zips them, and uploads to Directus
  * @returns string | Uploaded file UUID
  */
-class RemoteZipFiles extends BaseZipFiles {
+export default class RemoteZipFiles extends BaseZipFiles {
   private _token: string;
   private _filesUUID: string[];
   private _baseURL: string;
@@ -101,5 +101,3 @@ class RemoteZipFiles extends BaseZipFiles {
     return response.data;
   }
 }
-
-export { RemoteZipFiles };

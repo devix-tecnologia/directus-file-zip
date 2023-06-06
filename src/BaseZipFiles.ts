@@ -5,7 +5,7 @@ import { existsSync, mkdirSync, rmSync } from 'node:fs';
 import AdmZip from 'adm-zip';
 import { readdir } from 'fs/promises';
 
-class BaseZipFiles {
+export class BaseZipFiles {
   protected _tempFolder: string;
 
   constructor() {
@@ -48,5 +48,3 @@ class BaseZipFiles {
     });
   }
 }
-
-export { BaseZipFiles };

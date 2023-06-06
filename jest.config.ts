@@ -1,4 +1,4 @@
-import type { JestConfigWithTsJest } from 'ts-jest'
+import type { JestConfigWithTsJest } from 'ts-jest';
 
 const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
@@ -13,8 +13,13 @@ const config: JestConfigWithTsJest = {
       'ts-jest',
       {
         tsconfig: 'tsconfig.esm.json',
+        useESM: true,
       },
     ],
   },
-}
-export default config
+  moduleNameMapper: {
+    '(.+)\\.js': '$1',
+  },
+  extensionsToTreatAsEsm: ['.ts'],
+};
+export default config;

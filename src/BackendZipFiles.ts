@@ -1,9 +1,9 @@
-import { ApiExtensionContext } from '@directus/shared/types';
+import type { ApiExtensionContext } from '@directus/shared/types';
 import { createReadStream, createWriteStream } from 'node:fs';
-import { IZipConfig } from './types/types';
-import { BaseZipFiles } from './BaseZipFiles';
+import type { IZipConfig } from './types/types';
+import { BaseZipFiles } from './BaseZipFiles.js';
 
-class BackendZipFiles extends BaseZipFiles {
+export default class BackendZipFiles extends BaseZipFiles {
   private _ApiExtensionContext: ApiExtensionContext;
   private _filesUUID: string[];
   private _defaultStorage: string | undefined;
@@ -76,5 +76,3 @@ class BackendZipFiles extends BaseZipFiles {
     });
   }
 }
-
-export { BackendZipFiles };
