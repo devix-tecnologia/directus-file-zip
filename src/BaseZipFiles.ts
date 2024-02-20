@@ -5,6 +5,11 @@ import { existsSync, mkdirSync, rmSync } from 'node:fs';
 import AdmZip from 'adm-zip';
 import { readdir } from 'fs/promises';
 
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 export class BaseZipFiles {
   protected _tempFolder: string;
 
