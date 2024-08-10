@@ -1,6 +1,6 @@
 {
   "name": "@devix/directus-file-zip",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Creates a zip from files and saves to Directus Assets",
   "type": "module",
   "main": "./dist/index.js",
