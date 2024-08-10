@@ -1,14 +1,12 @@
-import type { JestConfigWithTsJest } from 'ts-jest';
+import { JestConfigWithTsJest } from 'ts-jest/dist/types';
 
 const config: JestConfigWithTsJest = {
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default-esm', // Usar o preset específico para ESM
   testEnvironment: 'node',
   testMatch: ['**/src/**/*.spec.ts'],
   resetMocks: true,
   verbose: true,
   transform: {
-    // '^.+\\.[tj]sx?$' to process js/ts with `ts-jest`
-    // '^.+\\.m?[tj]sx?$' to process js/ts/mjs/mts with `ts-jest`
     '^.+\\.tsx?$': [
       'ts-jest',
       {
@@ -22,4 +20,5 @@ const config: JestConfigWithTsJest = {
   },
   extensionsToTreatAsEsm: ['.ts'],
 };
+
 export default config;

@@ -2,6 +2,7 @@
 // Run Directus instance. Create access_key for admin
 // set key in the .env.dev file DIRECTUS_ACCESS_TOKEN="xxxxx"
 
+
 import { directusZipFiles } from '..';
 import * as dotenv from 'dotenv';
 import { uploadZip, getFileDetails } from './helper_test';
@@ -9,12 +10,13 @@ import { resolve } from 'path';
 
 dotenv.config({ path: `${process.cwd()}/.env.dev` });
 
-jest.setTimeout(20000);
+// jest.setTimeout(20000);
 
 if (!process.env.PUBLIC_URL) throw new Error('PUBLIC_URL not set in .env.dev');
 
 describe('directusZipFiles', () => {
   test('Compress files and saves to Directus', async () => {
+    // jest.setTimeout(20000);
     const FileForDownload = await uploadZip(resolve(process.cwd(), 'package.json'));
     const res = await directusZipFiles(
       [FileForDownload?.data.id],

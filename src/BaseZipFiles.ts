@@ -1,4 +1,3 @@
-import { ApiExtensionContext } from '@directus/shared/types';
 import { resolve } from 'path';
 import { randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, rmSync } from 'node:fs';
