@@ -44,11 +44,18 @@ export class BaseZipFiles {
   }
 
   protected emptyTempFolder() {
-    rmSync(this._tempFolder, {
-      recursive: true,
-      force: true,
-      maxRetries: 2,
-      retryDelay: 1000,
-    });
+    try {
+      rmSync(this._tempFolder, {
+        recursive: true,
+        force: true,
+        maxRetries: 2,
+        retryDelay: 1000,
+      });
+    } catch (err) {
+      // Cria um novo erro e anexa o erro original
+      const newError = new Error('Falha ao executar funcaoQuePodeFemptyTempFolderalhar');
+      (newError as any).cause = err; // Armazena o erro original na propriedade `cause`
+      throw newError;
+    }
   }
 }
