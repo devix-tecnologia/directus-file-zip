@@ -25,7 +25,8 @@ export class BaseZipFiles {
     (await this.readFilesFromFolder()).forEach((file) => {
       zip.addLocalFile(file);
     });
-    zip.writeZip(this.getFileFullPath(zipFilename));
+    const targetFileName = this.getFileFullPath(zipFilename);
+    zip.writeZip(targetFileName);
   }
 
   protected async readFilesFromFolder() {
@@ -52,9 +53,8 @@ export class BaseZipFiles {
         retryDelay: 1000,
       });
     } catch (err) {
-      // Cria um novo erro e anexa o erro original
-      const newError = new Error('Falha ao executar funcaoQuePodeFemptyTempFolderalhar');
-      (newError as any).cause = err; // Armazena o erro original na propriedade `cause`
+      const newError = new Error('Falha ao executar emptyTempFolder');
+      (newError as any).cause = err;
       throw newError;
     }
   }
