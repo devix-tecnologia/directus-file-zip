@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@directus/shared": "^9.24.0",
-    "adm-zip": "^0.5.15",
+    "adm-zip": "^0.5.10",
     "axios": "^1.7.3"
   },
   "publishConfig": {
