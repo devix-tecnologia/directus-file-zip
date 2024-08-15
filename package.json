@@ -20,7 +20,19 @@
     "prepack": "npm run build",
     "semantic-release": "semantic-release"
   },
-  "author": "Roberto Seba@Devix 2023",
+  "author": "Devix Tecnologia Ltda.",
+  "contributors": [
+    {
+      "name": "Roberto Seba",
+      "email": "roberto@robertoseba.com",
+      "url": "https://github.com/robertoseba"
+    },
+    {
+      "name": "Sidarta Veloso",
+      "email": "sidartaveloso@gmail.com",
+      "url": "https://github.com/sidartaveloso"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "@semantic-release/git": "^10.0.1",
