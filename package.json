@@ -56,7 +56,7 @@
     "axios": "^1.7.3"
   },
   "publishConfig": {
-    "registry": "https://verdaccio.paas.node07.de.vix.br/"
+    "registry": "https://registry.npmjs.org/"
   },
   "exports": {
     ".": {
