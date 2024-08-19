@@ -1,17 +1,12 @@
 name: Package Deploy
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: ['main']
   pull_request:
     branches: ['main']
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test_deploy:
     runs-on: ubuntu-latest
@@ -21,7 +16,6 @@ jobs:
         shell: bash
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -35,4 +29,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm ci
-          npx semantic-release
+          npx semantic-release --access public

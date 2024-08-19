@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/devix-tecnologia/directus-file-zip"
+    "url": "git+https://github.com/devix-tecnologia/directus-file-zip.git"
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
@@ -56,7 +56,9 @@
     "axios": "^1.7.3"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "type": "git",
+    "url": "git+https://github.com/devix-tecnologia/directus-file-zip.git",
+    "access": "public"
   },
   "exports": {
     ".": {
