@@ -1,5 +1,5 @@
 {
-  "name": "@devix/directus-file-zip",
+  "name": "@devix-tecnologia/directus-file-zip",
   "version": "2.1.5",
   "description": "Creates a zip from files and saves to Directus Assets",
   "type": "module",
