@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import { randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, rmSync } from 'node:fs';
-import AdmZip from '@devix-tecnologia/devix-adm-zip';
+import AdmZip from 'adm-zip';
 import { readdir } from 'fs/promises';
 
 import { dirname } from 'node:path';
