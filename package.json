@@ -53,7 +53,7 @@
   "dependencies": {
     "@directus/shared": "^9.24.0",
     "adm-zip": "github:cthackers/adm-zip#7e31f2782d753340d561b9e986d97be65c0e6979",
-    "axios": "^1.7.3"
+    "axios": "^1.7.4"
   },
   "publishConfig": {
     "type": "git",
