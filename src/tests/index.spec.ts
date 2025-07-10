@@ -8,11 +8,11 @@ import * as dotenv from 'dotenv';
 import { uploadZip, getFileDetails } from './helper_test';
 import { resolve } from 'path';
 
-dotenv.config({ path: `${process.cwd()}/.env.dev` });
+dotenv.config({ path: `${process.cwd()}/.env` });
 
 // jest.setTimeout(20000);
 
-if (!process.env.PUBLIC_URL) throw new Error('PUBLIC_URL not set in .env.dev');
+if (!process.env.DIRECTUS_PUBLIC_URL) throw new Error('PUBLIC_URL not set in .env.dev');
 
 describe('directusZipFiles', () => {
   test('Compress files and saves to Directus', async () => {
@@ -24,7 +24,7 @@ describe('directusZipFiles', () => {
       'File title',
       {
         accessToken: String(process.env.DIRECTUS_ACCESS_TOKEN),
-        baseURL: process.env.PUBLIC_URL ?? 'http://localhost:8055',
+        baseURL: process.env.DIRECTUS_PUBLIC_URL ?? 'http://localhost:8055',
       },
     );
     if (!res) throw new Error('Axios failed');
