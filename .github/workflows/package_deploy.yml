@@ -28,7 +28,9 @@ jobs:
           version: 8.x
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@8.x --activate
 
       - name: Release
         env:
