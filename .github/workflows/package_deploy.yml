@@ -30,7 +30,7 @@ jobs:
       - name: Install pnpm
         run: |
           npm install -g pnpm
-          echo "::add-path::$(npm bin -g)"
+          export PATH="$(npm bin -g):$PATH"
 
       - name: Verify pnpm installation
         run: |
