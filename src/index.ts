@@ -1,6 +1,6 @@
 import BackendZipFiles from './BackendZipFiles.js';
 import RemoteZipFiles from './RemoteZipFiles.js';
-import type { IZipConfig } from './types/types';
+import type { IZipConfig } from './types/types.js';
 
 export async function directusZipFiles(
   filesUUID: string[],

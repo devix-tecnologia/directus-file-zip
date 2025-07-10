@@ -1,6 +1,6 @@
-import type { ApiExtensionContext } from '@directus/shared/types';
+import type { ApiExtensionContext } from './types/DirectusImports.js';
 import { createReadStream, createWriteStream } from 'node:fs';
-import type { IZipConfig } from './types/types';
+import type { IZipConfig } from './types/types.js';
 import { BaseZipFiles } from './BaseZipFiles.js';
 
 export default class BackendZipFiles extends BaseZipFiles {

@@ -1,4 +1,4 @@
-import { ApiExtensionContext } from '@directus/shared/types';
+import { ApiExtensionContext } from './DirectusImports.js';
 
 export interface IZipConfig {
   accessToken?: string;

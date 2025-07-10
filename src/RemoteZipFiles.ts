@@ -1,4 +1,4 @@
-import type { IDirectusFile, IZipConfig } from './types/types';
+import type { IDirectusFile, IZipConfig } from './types/types.js';
 import { resolve } from 'path';
 import { createWriteStream } from 'node:fs';
 import axios from 'axios';
@@ -32,7 +32,7 @@ export default class RemoteZipFiles extends BaseZipFiles {
       await this.compressFile(zipFilename);
       const uploadResponse = await this.uploadZip(zipFilename, fileTitle);
       this.emptyTempFolder();
-      uploadedFileUUID = uploadResponse.data.id;
+      uploadedFileUUID = uploadResponse.data.id ?? '';
     } catch (err) {
       throw err;
     } finally {

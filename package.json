@@ -51,11 +51,16 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vite": "^6.0.0"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
-    "axios": "^1.10.0"
+    "axios": "^1.10.0",
+    "better-sqlite3": "^12.2.0",
+    "cacache": "19.0.1",
+    "make-fetch-happen": "14.0.3",
+    "node-gyp": "11.2.0"
   },
   "publishConfig": {
     "type": "git",

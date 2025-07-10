@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { readFile } from 'fs/promises';
-import { IDirectusFile } from '../types/types';
+import { IDirectusFile } from '../types/types.js';
 
 export async function uploadZip(file: string): Promise<IDirectusFile> {
   const url = `${process.env.PUBLIC_URL}/files`;

@@ -3,9 +3,9 @@
 // set key in the .env.dev file DIRECTUS_ACCESS_TOKEN="xxxxx"
 
 
-import { directusZipFiles } from '..';
+import { directusZipFiles } from '../index.js';
 import * as dotenv from 'dotenv';
-import { uploadZip, getFileDetails } from './helper_test';
+import { uploadZip, getFileDetails } from './helper_test.js';
 import { resolve } from 'path';
 
 dotenv.config({ path: `${process.cwd()}/.env` });
