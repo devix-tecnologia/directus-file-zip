@@ -18,19 +18,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22.17.0
-          cache: 'pnpm'
-
       - uses: pnpm/action-setup@v2
         with:
           version: 10.13.1
 
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          export PATH="$(npm bin -g):$PATH"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.0
+          cache: 'pnpm'
 
       - name: Verify pnpm installation
         run: |
