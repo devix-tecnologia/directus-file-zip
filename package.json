@@ -18,7 +18,8 @@
     "build": "pnpm run clean && pnpm run build:esm",
     "build:esm": "tsc -p ./tsconfig.esm.json && mv dist/esm/index.js dist/esm/index.mjs",
     "prepack": "pnpm run build",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "format": "prettier --write ."
   },
   "author": "Devix Tecnologia Ltda.",
   "contributors": [
@@ -38,6 +39,7 @@
     "@directus/api": "^28.0.3",
     "@directus/extensions": "^3.0.9",
     "@directus/types": "^13.2.1",
+    "@jest/globals": "^30.0.5",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.4",
     "@semantic-release/npm": "^12.0.2",
@@ -47,6 +49,7 @@
     "assert": "^2.1.0",
     "dotenv": "^17.2.1",
     "jest": "^30.0.5",
+    "prettier": "^3.6.2",
     "semantic-release": "^24.2.7",
     "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",

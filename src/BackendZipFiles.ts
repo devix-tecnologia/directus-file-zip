@@ -68,7 +68,9 @@ export default class BackendZipFiles extends BaseZipFiles {
 
   private async getFile(fileUUID: string): Promise<void> {
     const assetsService = await this.createAssetsService();
-    const { stream, file, stat } = await assetsService.getAsset(fileUUID, { transformationParams: {} });
+    const { stream, file, stat } = await assetsService.getAsset(fileUUID, {
+      transformationParams: {},
+    });
     let writeStream = createWriteStream(this.getFileFullPath(file.filename_download));
     stream.pipe(writeStream);
     return new Promise((resolve, reject) => {

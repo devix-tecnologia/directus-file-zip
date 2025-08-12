@@ -9,8 +9,8 @@ services:
     restart: unless-stopped
     image: directus/directus:9.23.1
     environment:
-      DB_CLIENT: "sqlite3"
-      DB_HOST: "database"
+      DB_CLIENT: 'sqlite3'
+      DB_HOST: 'database'
       DB_DATABASE: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -19,11 +19,11 @@ services:
       ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL}
       ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
       PUBLIC_URL: ${DIRECTUS_PUBLIC_URL}
-      STORAGE_LOCAL_ROOT: "/directus/uploads"
-      GENERATE_SOURCEMAP: "false"
-      EXTENSIONS_PATH: "./extensions"
+      STORAGE_LOCAL_ROOT: '/directus/uploads'
+      GENERATE_SOURCEMAP: 'false'
+      EXTENSIONS_PATH: './extensions'
     ports:
-      - 8055:8055
+      - 18055:8055
     depends_on:
       - database
     networks:
