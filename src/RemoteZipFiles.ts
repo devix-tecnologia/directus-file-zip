@@ -89,7 +89,7 @@ export default class RemoteZipFiles extends BaseZipFiles {
     formData.append('title', title);
     formData.append(
       'file',
-      new Blob([fileBuffer], { type: 'application/zip' }),
+      new Blob([new Uint8Array(fileBuffer)], { type: 'application/zip' }),
       filename,
     );
 

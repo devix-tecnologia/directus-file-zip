@@ -49,12 +49,13 @@ export default class BackendZipFiles extends BaseZipFiles {
   private async uploadFile(filename: string, title: string): Promise<string> {
     const filesService = await this.createFilesService();
     const fileStream = createReadStream(this.getFileFullPath(filename));
-    return await filesService.uploadOne(fileStream, {
+    const result = await filesService.uploadOne(fileStream, {
       filename_download: filename,
       title: title,
       type: 'application/zip',
-      storage: this._defaultStorage,
+      storage: this._defaultStorage || 'local',
     });
+    return String(result);
   }
 
   private async getFiles() {

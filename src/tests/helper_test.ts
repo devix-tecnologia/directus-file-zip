@@ -6,7 +6,7 @@ export async function uploadZip(file: string): Promise<IDirectusFile> {
   const url = `${process.env.PUBLIC_URL}/files`;
   const fileBuffer = await readFile(file);
   const formData = new FormData();
-  formData.append('file', new Blob([fileBuffer], { type: 'application/zip' }), file);
+  formData.append('file', new Blob([new Uint8Array(fileBuffer)], { type: 'application/zip' }), file);
 
   const response = await axios.post(url, formData, {
     headers: {
