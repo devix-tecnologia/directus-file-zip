@@ -22,7 +22,16 @@ jobs:
           version: 10.14.0
           run_install: false
       - run: pnpm install
-      - run: pnpm test
+      - name: Start Docker Compose
+        run: docker-compose up -d
+      - name: Run tests
+        run: pnpm test
+      - name: Docker logs (on failure)
+        if: failure()
+        run: docker-compose logs
+      - name: Stop Docker Compose
+        if: always()
+        run: docker-compose down
 
   update-directus-versions:
     if: github.event_name == 'pull_request'
