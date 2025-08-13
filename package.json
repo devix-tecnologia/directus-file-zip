@@ -13,7 +13,7 @@
     "url": "git+https://github.com/devix-tecnologia/directus-file-zip.git"
   },
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "vitest run",
     "clean": "rm -rf ./dist",
     "build": "pnpm run clean && pnpm run build:esm",
     "build:esm": "tsc -p ./tsconfig.esm.json && mv dist/esm/index.js dist/esm/index.mjs",
@@ -39,31 +39,25 @@
     "@directus/api": "^28.0.3",
     "@directus/extensions": "^3.0.9",
     "@directus/types": "^13.2.1",
-    "@jest/globals": "^30.0.5",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.4",
     "@semantic-release/npm": "^12.0.2",
     "@types/adm-zip": "^0.5.7",
-    "@types/jest": "^30.0.0",
     "@types/node": "^24.2.1",
     "assert": "^2.1.0",
     "dotenv": "^17.2.1",
-    "jest": "^30.0.5",
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.7",
-    "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vitest": "^1.6.1"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
     "axios": "^1.11.0",
-    "better-sqlite3": "^12.2.0",
-    "cacache": "19.0.1",
-    "make-fetch-happen": "14.0.3",
-    "node-gyp": "11.2.0"
+    "better-sqlite3": "^12.2.0"
   },
   "publishConfig": {
     "type": "git",

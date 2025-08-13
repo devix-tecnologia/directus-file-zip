@@ -2,17 +2,10 @@ import { directusZipFiles } from '../index.js';
 import { uploadZip, getFileDetails } from './helper_test.js';
 import { resolve } from 'path';
 import { setupTestEnvironment, teardownTestEnvironment } from './setup.js';
-import { jest } from '@jest/globals';
+import { describe, test, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 import { logger } from './test-logger.js';
 
-jest.setTimeout(120000); // Increase timeout for Docker operations
-
-const directusVersions = [
-  '9.23.1', // Versão atual
-  '9.22.4', // Versão anterior
-  '9.24.0', // Versão mais recente da série 9
-  '10.8.3', // Última versão da série 10
-];
+import { directusVersions } from './directus-versions.js';
 
 describe.each(directusVersions)(
   'directusZipFiles Integration Tests - Directus %s',
@@ -23,9 +16,15 @@ describe.each(directusVersions)(
       logger.setCurrentTest(`Directus ${version}`);
     });
 
+    let file1Id: string;
+    let file2Id: string;
     beforeAll(async () => {
       process.env.DIRECTUS_VERSION = version;
       accessToken = await setupTestEnvironment();
+      const file1 = await uploadZip(resolve(process.cwd(), 'package.json'));
+      const file2 = await uploadZip(resolve(process.cwd(), 'README.md'));
+      file1Id = file1?.data.id;
+      file2Id = file2?.data.id;
     }, 120000); // Timeout específico para o beforeAll
 
     afterAll(async () => {
@@ -33,19 +32,11 @@ describe.each(directusVersions)(
     });
 
     test('Compress single file and save to Directus', async () => {
-      // Ensure we have the access token from the setup
       expect(process.env.DIRECTUS_ACCESS_TOKEN).toBeDefined();
-
-      const FileForDownload = await uploadZip(resolve(process.cwd(), 'package.json'));
-      const res = await directusZipFiles(
-        [FileForDownload?.data.id],
-        'compressed.zip',
-        'File title',
-        {
-          accessToken: String(process.env.DIRECTUS_ACCESS_TOKEN),
-          baseURL: process.env.DIRECTUS_PUBLIC_URL,
-        },
-      );
+      const res = await directusZipFiles([file1Id], 'compressed.zip', 'File title', {
+        accessToken: String(process.env.DIRECTUS_ACCESS_TOKEN),
+        baseURL: process.env.DIRECTUS_PUBLIC_URL,
+      });
       if (!res) throw new Error('Axios failed');
       const fileDetails = await getFileDetails(res);
       expect(res).not.toBeNull();
@@ -55,11 +46,8 @@ describe.each(directusVersions)(
     }, 60000);
 
     test('Compress multiple files and save to Directus', async () => {
-      const file1 = await uploadZip(resolve(process.cwd(), 'package.json'));
-      const file2 = await uploadZip(resolve(process.cwd(), 'readme.md'));
-
       const res = await directusZipFiles(
-        [file1?.data.id, file2?.data.id],
+        [file1Id, file2Id],
         'multiple.zip',
         'Multiple Files',
         {

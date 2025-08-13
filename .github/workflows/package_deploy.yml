@@ -1,4 +1,4 @@
-name: Package Deploy
+name: CI & Release
 
 on:
   push:
@@ -6,35 +6,54 @@ on:
   pull_request:
     branches: ['main']
   workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * *'
 
 jobs:
-  test_deploy:
+  test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22.17.0
-
       - uses: pnpm/action-setup@v4
         with:
           version: 10.14.0
           run_install: false
+      - run: pnpm install
+      - run: pnpm test
 
-      - name: Verify pnpm installation
+  update-directus-versions:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Atualiza array de versões do Directus nos testes
+        run: node .github/scripts/updateDirectusVersions.js
+      - name: Commit changes
         run: |
-          pnpm --version
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add src/tests/index.spec.ts
+          git commit -m "chore: update directus versions in tests" || echo "No changes to commit"
+          git push
 
+  release:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.14.0
+          run_install: false
+      - run: pnpm install
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          pnpm install
-          npx semantic-release --access public
+        run: npx semantic-release --access public

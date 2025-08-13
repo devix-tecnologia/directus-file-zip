@@ -1,3 +1,6 @@
+Placa, renavam,descMarca, descCor, FurtoRoubo,IndicativoPlacaClonada, exerciciolicenciamentopago, Situacao
+PPK8308;1097339960;FIAT/SIENA ATTRACTIV 1.4;BRANCA;N;S;2024;Em Circulação
+
 # Directus-file-zip
 
 Packs a list of Directus files from their UUIDs into a Zip file.
