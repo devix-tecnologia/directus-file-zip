@@ -10,7 +10,7 @@ async function cleanupDocker() {
   try {
     logger.debug('Cleaning up test containers...');
     await execAsync(
-      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker-compose -f docker-compose.test.yml down --remove-orphans`,
+      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker compose -f docker compose.test.yml down --remove-orphans`,
     );
     logger.debug('Test containers removed');
   } catch (error) {
@@ -29,7 +29,7 @@ export async function setupTestEnvironment() {
     // Start Docker containers
     logger.info('Starting test environment...');
     const { stdout, stderr } = await execAsync(
-      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker-compose -f docker-compose.test.yml up -d`,
+      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker compose -f docker compose.test.yml up -d`,
     );
 
     // Docker Compose uses stderr for progress messages
@@ -67,7 +67,7 @@ export async function teardownTestEnvironment() {
   try {
     logger.info('Shutting down test environment...');
     await execAsync(
-      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker-compose -f docker-compose.test.yml down --remove-orphans`,
+      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker compose -f docker compose.test.yml down --remove-orphans`,
     );
   } catch (error) {
     console.error('Erro ao finalizar ambiente de teste:', error);

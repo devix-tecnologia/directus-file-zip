@@ -7,7 +7,7 @@
     "moduleResolution": "node16",
     "outDir": "./dist/esm",
     "declarationDir": "./dist/esm/types",
-    "types": ["jest", "node"],
+    "types": ["node"],
     "isolatedModules": true
   }
 }
