@@ -35,12 +35,12 @@ jobs:
           run_install: false
       - run: pnpm install
       - name: Start Docker Compose
-        run: docker compose up -d
+        run: docker compose -f docker-compose.test.yml up -d
       - name: Run tests
         run: pnpm test
       - name: Docker logs (on failure)
         if: failure()
-        run: docker compose logs
+        run: docker compose -f docker-compose.test.yml logs
       - name: Stop Docker Compose
         if: always()
-        run: docker compose down
+        run: docker compose -f docker-compose.test.yml down
