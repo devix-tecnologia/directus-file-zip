@@ -235,4 +235,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-Made with ❤️ by [Devix Tecnologia](https://github.com/devix-tecnologia)
+Made with ❤️ by [Devix Tecnologia](https://github.com/devix-tecnologia).
