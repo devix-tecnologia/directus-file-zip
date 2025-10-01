@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22.20.0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.17.1
+          run_install: false
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm typecheck
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22.20.0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.17.1
+          run_install: false
+      - run: pnpm install
+      - name: Start Docker Compose
+        run: docker compose -f docker-compose.test.yml up -d
+      - name: Run tests
+        run: pnpm test
+      - name: Docker logs (on failure)
+        if: failure()
+        run: docker compose -f docker-compose.test.yml logs
+      - name: Stop Docker Compose
+        if: always()
+        run: docker compose -f docker-compose.test.yml down
