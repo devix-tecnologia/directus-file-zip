@@ -8,3 +8,7 @@ onlyBuiltDependencies:
   - sqlite3
   - unrs-resolver
   - vue-demi
+
+overrides:
+  axios@<1.12.0: '>=1.12.0'
+  vite@>=7.1.0 <=7.1.4: '>=7.1.5'

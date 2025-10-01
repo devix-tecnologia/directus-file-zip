@@ -19,17 +19,22 @@ describe.each(directusVersions)(
     let file1Id: string;
     let file2Id: string;
     beforeAll(async () => {
+      console.log(`🚀 Setting up Directus ${version}...`);
       process.env.DIRECTUS_VERSION = version;
       accessToken = await setupTestEnvironment();
+      console.log(`📁 Uploading test files for Directus ${version}...`);
       const file1 = await uploadZip(resolve(process.cwd(), 'package.json'));
       const file2 = await uploadZip(resolve(process.cwd(), 'README.md'));
       file1Id = file1?.data.id;
       file2Id = file2?.data.id;
+      console.log(`✅ Directus ${version} setup complete!`);
     }, 120000); // Timeout específico para o beforeAll
 
     afterAll(async () => {
+      console.log(`🧹 Cleaning up Directus ${version}...`);
       await teardownTestEnvironment();
-    });
+      console.log(`✅ Directus ${version} cleanup complete!`);
+    }, 120000);
 
     test('Compress single file and save to Directus', async () => {
       expect(process.env.DIRECTUS_ACCESS_TOKEN).toBeDefined();
