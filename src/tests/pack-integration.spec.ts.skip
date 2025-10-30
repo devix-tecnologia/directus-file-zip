@@ -1,0 +1,138 @@
+import { describe, test, expect, beforeAll, afterAll } from 'vitest';
+import {
+  setupPackTestEnvironment,
+  teardownPackTestEnvironment,
+  checkExtensionInContainer,
+} from './pack-setup.js';
+import { logger } from './test-logger.js';
+import { readFileSync } from 'fs';
+
+describe('Pack Integration Test - Extension Installation', () => {
+  let packageFile: string;
+  let logs: string;
+  let directusVersion: string;
+  let packageVersion: string;
+
+  beforeAll(async () => {
+    logger.setCurrentTest('Pack Integration');
+    
+    // Lê a versão do pacote
+    const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'));
+    packageVersion = packageJson.version;
+    directusVersion = process.env.DIRECTUS_VERSION || '11.5.1';
+    
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('🚀 Pack Integration Test');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log(`📦 Package Version: ${packageVersion}`);
+    console.log(`🐳 Directus Version: ${directusVersion}`);
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('Steps:');
+    console.log('  1. Generate .tgz package with pnpm pack');
+    console.log('  2. Build Docker image with extension installed');
+    console.log('  3. Start Directus container');
+    console.log('  4. Verify extension loading');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    
+    const result = await setupPackTestEnvironment();
+    packageFile = result.packageFile;
+    logs = result.logs;
+    
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log(`✅ Environment ready! Package: ${packageFile}`);
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  }, 180000); // 3 minutos de timeout para build do Docker
+
+  afterAll(async () => {
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('🧹 Cleaning up pack test environment...');
+    await teardownPackTestEnvironment();
+    console.log('✅ Pack test cleanup complete!');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  }, 60000);
+
+  test('Package file should be generated', () => {
+    console.log('\n📋 Test: Package Generation');
+    console.log(`   Expected pattern: devix-tecnologia-directus-file-zip-*.tgz`);
+    console.log(`   Actual file: ${packageFile}`);
+    
+    expect(packageFile).toBeDefined();
+    expect(packageFile).toMatch(/devix-tecnologia-directus-file-zip.*\.tgz/);
+    
+    console.log('   ✅ Package file validated');
+  });
+
+  test('Extension directory should exist in container', async () => {
+    console.log('\n📋 Test: Extension Directory');
+    console.log(`   Checking: /directus/extensions/directus-file-zip`);
+    
+    const extensionExists = await checkExtensionInContainer();
+    
+    console.log(`   Result: ${extensionExists ? '✅ Directory exists' : '❌ Directory not found'}`);
+    expect(extensionExists).toBe(true);
+  });
+
+  test('Directus logs should indicate extension was loaded', () => {
+    console.log('\n📋 Test: Extension Loading Evidence');
+    console.log(`   Directus Version: ${directusVersion}`);
+    console.log(`   Package Version: ${packageVersion}`);
+    console.log(`   Log size: ${logs.length} characters`);
+    
+    expect(logs).toBeDefined();
+    expect(logs.length).toBeGreaterThan(0);
+    
+    // Busca por evidências nos logs
+    const extensionPatterns = [
+      /directus-file-zip/i,
+      /extensions/i,
+      /Loaded extension/i,
+      /extension.*loaded/i,
+      /registered.*extension/i,
+    ];
+    
+    const foundEvidence: string[] = [];
+    const logLines = logs.split('\n');
+    
+    for (const pattern of extensionPatterns) {
+      const matchingLines = logLines.filter(line => pattern.test(line));
+      if (matchingLines.length > 0) {
+        foundEvidence.push(`Pattern "${pattern.source}" found in ${matchingLines.length} line(s)`);
+        matchingLines.slice(0, 3).forEach(line => {
+          foundEvidence.push(`   → ${line.trim()}`);
+        });
+      }
+    }
+    
+    console.log('\n   📊 Evidence found in logs:');
+    if (foundEvidence.length > 0) {
+      foundEvidence.forEach(evidence => console.log(`   ${evidence}`));
+    } else {
+      console.log('   ⚠️  No specific extension loading messages found');
+      console.log('   This may be normal depending on Directus version and log level');
+    }
+    
+    // Verifica se há menção à extensão nos logs
+    const hasExtensionMention = 
+      logs.includes('directus-file-zip') ||
+      logs.includes('extensions') ||
+      logs.includes('Loaded extension');
+    
+    console.log(`\n   Result: ${hasExtensionMention ? '✅' : '⚠️'} Extension loading evidence ${hasExtensionMention ? 'found' : 'not explicitly found'}`);
+    expect(hasExtensionMention).toBe(true);
+  });
+
+  test('Directus should be healthy and responding', async () => {
+    console.log('\n📋 Test: Directus Health Check');
+    console.log(`   Endpoint: http://localhost:18056/server/health`);
+    
+    const axios = (await import('axios')).default;
+    const response = await axios.get('http://localhost:18056/server/health');
+    
+    console.log(`   Status Code: ${response.status}`);
+    console.log(`   Health Status: ${response.data.status}`);
+    console.log(`   ✅ Directus is healthy and responding`);
+    
+    expect(response.status).toBe(200);
+    expect(response.data.status).toBe('ok');
+  });
+});

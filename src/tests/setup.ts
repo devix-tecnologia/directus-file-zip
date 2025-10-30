@@ -6,11 +6,41 @@ import { logger } from './test-logger.js';
 
 const execAsync = promisify(exec);
 
+// Detecta qual comando Docker Compose está disponível
+let dockerComposeCommand: string | null = null;
+
+async function getDockerComposeCommand(): Promise<string> {
+  if (dockerComposeCommand) {
+    return dockerComposeCommand;
+  }
+
+  try {
+    // Tenta docker compose (v2)
+    await execAsync('docker compose version');
+    dockerComposeCommand = 'docker compose';
+    logger.debug('Using Docker Compose v2 (docker compose)');
+  } catch {
+    try {
+      // Fallback para docker-compose (v1)
+      await execAsync('docker-compose --version');
+      dockerComposeCommand = 'docker-compose';
+      logger.debug('Using Docker Compose v1 (docker-compose)');
+    } catch {
+      throw new Error(
+        'Docker Compose not found. Please install Docker Compose v1 or v2.',
+      );
+    }
+  }
+
+  return dockerComposeCommand;
+}
+
 async function cleanupDocker() {
   try {
     logger.debug('Cleaning up test containers...');
+    const composeCmd = await getDockerComposeCommand();
     await execAsync(
-      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker compose -f docker-compose.test.yml down --remove-orphans`,
+      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} ${composeCmd} -f docker-compose.test.yml down --remove-orphans`,
     );
     logger.debug('Test containers removed');
   } catch (error) {
@@ -28,8 +58,9 @@ export async function setupTestEnvironment() {
 
     // Start Docker containers
     logger.info('Starting test environment...');
+    const composeCmd = await getDockerComposeCommand();
     const { stdout, stderr } = await execAsync(
-      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker compose -f docker-compose.test.yml up -d`,
+      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} ${composeCmd} -f docker-compose.test.yml up -d`,
     );
 
     // Docker Compose uses stderr for progress messages
@@ -66,8 +97,9 @@ export async function setupTestEnvironment() {
 export async function teardownTestEnvironment() {
   try {
     logger.info('Shutting down test environment...');
+    const composeCmd = await getDockerComposeCommand();
     await execAsync(
-      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} docker compose -f docker-compose.test.yml down --remove-orphans`,
+      `DIRECTUS_VERSION=${process.env.DIRECTUS_VERSION} ${composeCmd} -f docker-compose.test.yml down --remove-orphans`,
     );
   } catch (error) {
     console.error('Erro ao finalizar ambiente de teste:', error);
