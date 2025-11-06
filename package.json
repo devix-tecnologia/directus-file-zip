@@ -41,7 +41,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@directus/api": "^31.0.0",
+    "@directus/api": "^32.0.0",
     "@directus/extensions": "^3.0.11",
     "@directus/types": "^13.2.3",
     "@semantic-release/git": "^10.0.1",
