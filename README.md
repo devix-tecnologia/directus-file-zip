@@ -260,6 +260,7 @@ To customize the minimum age for Directus versions:
    - Value: `7` (or any number of days you prefer)
 
 **Recommended values:**
+
 - Conservative: `14` days
 - Balanced: `7` days (default)
 - Aggressive: `3` days
