@@ -6,26 +6,26 @@ services:
       args:
         DIRECTUS_VERSION: ${DIRECTUS_VERSION:-11.5.1}
     environment:
-      HOST: "0.0.0.0"
-      KEY: "test-key-pack-integration"
-      SECRET: "test-secret-pack-integration"
-      EXTENSIONS_AUTO_RELOAD: "true"
+      HOST: '0.0.0.0'
+      KEY: 'test-key-pack-integration'
+      SECRET: 'test-secret-pack-integration'
+      EXTENSIONS_AUTO_RELOAD: 'true'
 
-      DB_CLIENT: "sqlite3"
-      DB_FILENAME: "/tmp/data/directus.db"
+      DB_CLIENT: 'sqlite3'
+      DB_FILENAME: '/tmp/data/directus.db'
 
-      CORS_ENABLED: "true"
-      CORS_ORIGIN: "true"
-      CORS_CREDENTIALS: "true"
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'true'
+      CORS_CREDENTIALS: 'true'
 
-      ADMIN_EMAIL: "admin@pack-test.com"
-      ADMIN_PASSWORD: "admin123"
+      ADMIN_EMAIL: 'admin@pack-test.com'
+      ADMIN_PASSWORD: 'admin123'
 
-      PUBLIC_URL: "http://localhost:18056"
-      CACHE_ENABLED: "false"
+      PUBLIC_URL: 'http://localhost:18056'
+      CACHE_ENABLED: 'false'
 
       # Log level mais verboso para verificar carregamento da extensão
-      LOG_LEVEL: "debug"
+      LOG_LEVEL: 'debug'
     ports:
       - 18056:8055
     tmpfs:
@@ -34,7 +34,15 @@ services:
     networks:
       - directus-pack-test-network
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8055/server/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8055/server/health',
+        ]
       interval: 10s
       timeout: 5s
       retries: 30

@@ -42,7 +42,7 @@ async function cleanupPackTestDocker() {
     };
     await execAsync(
       `${composeCmd} -f docker-compose.pack-test.yml down --remove-orphans --volumes`,
-      { env: envVars }
+      { env: envVars },
     );
     logger.debug('Pack test containers removed');
   } catch (error) {
@@ -90,7 +90,7 @@ export async function setupPackTestEnvironment() {
     // Build da imagem
     const { stdout: buildOut, stderr: buildErr } = await execAsync(
       `${composeCmd} -f docker-compose.pack-test.yml build --no-cache`,
-      { env: envVars }
+      { env: envVars },
     );
 
     if (buildOut) logger.dockerProgress(buildOut);
@@ -100,7 +100,7 @@ export async function setupPackTestEnvironment() {
     logger.info('Starting pack test environment...');
     const { stdout, stderr } = await execAsync(
       `${composeCmd} -f docker-compose.pack-test.yml up -d`,
-      { env: envVars }
+      { env: envVars },
     );
 
     if (stdout) logger.dockerProgress(stdout);
@@ -131,7 +131,7 @@ export async function teardownPackTestEnvironment() {
     };
     await execAsync(
       `${composeCmd} -f docker-compose.pack-test.yml down --remove-orphans --volumes`,
-      { env: envVars }
+      { env: envVars },
     );
   } catch (error) {
     logger.error('Error tearing down pack test environment:', error);

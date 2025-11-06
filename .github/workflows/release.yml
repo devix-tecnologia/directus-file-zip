@@ -62,11 +62,13 @@ jobs:
           run_install: false
       - run: pnpm install
       - name: Update Directus versions in tests
+        env:
+          DIRECTUS_VERSION_MIN_AGE_DAYS: ${{ vars.DIRECTUS_VERSION_MIN_AGE_DAYS || '7' }}
         run: node .github/scripts/updateDirectusVersions.js
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           commit-message: 'chore: update directus versions in tests'
           title: 'chore: update directus versions in tests'
           body: 'Automated update of Directus versions for testing'
