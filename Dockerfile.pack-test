@@ -1,0 +1,25 @@
+# Dockerfile para testar a instalação do pacote .tgz
+ARG DIRECTUS_VERSION=11.5.1
+FROM directus/directus:${DIRECTUS_VERSION}
+
+USER root
+
+# Instalar pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Criar diretório para a extensão
+RUN mkdir -p /directus/extensions/directus-file-zip
+
+# Copiar o arquivo .tgz gerado
+COPY ./devix-tecnologia-directus-file-zip-*.tgz /tmp/extension.tgz
+
+# Extrair e instalar a extensão
+WORKDIR /directus/extensions/directus-file-zip
+RUN tar -xzf /tmp/extension.tgz --strip-components=1 && \
+    rm /tmp/extension.tgz
+
+# Ajustar permissões
+RUN chown -R node:node /directus/extensions
+
+USER node
+WORKDIR /directus

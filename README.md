@@ -38,7 +38,7 @@ PUBLIC_URL=http://localhost:8055  # Your Directus instance URL
 
 ## 📖 Usage
 
-### 🔧 Inside Directus Backend (Extension Endpoint)
+### �� Inside Directus Backend (Extension Endpoint)
 
 Use this approach when creating Directus extensions or hooks:
 
@@ -209,6 +209,67 @@ pnpm lint      # Check code formatting
 pnpm typecheck # TypeScript type checking
 pnpm test      # Run tests with Vitest
 ```
+
+## 🔄 CI/CD & Automated Dependency Updates
+
+### Dependency Management with Dependabot
+
+This project uses **Dependabot** for automated dependency updates:
+
+- �� **npm packages**: Checked daily at 6 AM (São Paulo timezone)
+- 🔧 **GitHub Actions**: Checked weekly on Mondays at 6 AM
+- 🎯 **Auto-grouping**: Minor and patch updates are grouped together to reduce PR noise
+
+### Directus Version Testing Strategy
+
+The project automatically tests against multiple Directus versions to ensure compatibility. To prevent issues with newly released versions, we implement a **version age filter**:
+
+- **Default**: New Directus versions are only adopted after **7 days** from their release date
+- **Configurable**: Adjust via GitHub repository variable `DIRECTUS_VERSION_MIN_AGE_DAYS`
+
+#### Why Age Filtering Matters
+
+- ✅ **Stability**: Avoids immediate adoption of versions with potential critical bugs
+- ✅ **Safety**: Gives time for the community to identify breaking changes
+- ✅ **Reliability**: Ensures patches and hotfixes are released before we test against them
+
+### Configuration
+
+#### 1. PAT Token (Recommended - Enables Automated CI)
+
+**Status**: Optional, but highly recommended for full automation.
+
+**Without PAT_TOKEN**: PRs will be created automatically, but CI tests won't run (you'll need to manually verify).
+
+**With PAT_TOKEN**: PRs will be created AND tests will run automatically before merge.
+
+To enable automated CI tests on version update PRs:
+
+1. Go to **GitHub.com** → Your profile **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
+2. Click **Generate new token** with permissions:
+   - ✓ `repo` (all)
+   - ✓ `workflow`
+3. Copy the token and add it to your repository:
+   - Repository **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
+   - Name: `PAT_TOKEN`
+   - Value: paste your token
+
+> **Why?** GitHub's security prevents `GITHUB_TOKEN` from triggering workflows to avoid infinite loops. A PAT bypasses this limitation.
+
+#### 2. Version Age Filter (Optional)
+
+To customize the minimum age for Directus versions:
+
+1. Go to repository **Settings** → **Secrets and variables** → **Actions** → **Variables** tab
+2. Click **New repository variable**:
+   - Name: `DIRECTUS_VERSION_MIN_AGE_DAYS`
+   - Value: `7` (or any number of days you prefer)
+
+**Recommended values:**
+
+- Conservative: `14` days
+- Balanced: `7` days (default)
+- Aggressive: `3` days
 
 ## 📝 License
 
