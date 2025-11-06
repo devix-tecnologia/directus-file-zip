@@ -233,9 +233,15 @@ The project automatically tests against multiple Directus versions to ensure com
 - ✅ **Safety**: Gives time for the community to identify breaking changes
 - ✅ **Reliability**: Ensures patches and hotfixes are released before we test against them
 
-### Required Configuration
+### Configuration
 
-#### 1. PAT Token (Critical - Required for CI)
+#### 1. PAT Token (Recommended - Enables Automated CI)
+
+**Status**: Optional, but highly recommended for full automation.
+
+**Without PAT_TOKEN**: PRs will be created automatically, but CI tests won't run (you'll need to manually verify).
+
+**With PAT_TOKEN**: PRs will be created AND tests will run automatically before merge.
 
 To enable automated CI tests on version update PRs:
 
