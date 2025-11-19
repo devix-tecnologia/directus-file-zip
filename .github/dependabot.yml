@@ -1,22 +1,28 @@
 version: 2
 updates:
-  # NPM dependencies - daily checks
+  # NPM dependencies - weekly checks with grouping
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'monday'
       time: '06:00'
       timezone: 'America/Sao_Paulo'
-    open-pull-requests-limit: 10
-    # Remove 'allow' to enable all dependencies
+    open-pull-requests-limit: 3
     groups:
-      # Group minor and patch updates together
-      production-dependencies:
+      # Group all npm dependencies together (one PR per week)
+      npm-dependencies:
         patterns:
           - '*'
         update-types:
           - 'minor'
           - 'patch'
+      # Separate group for major updates (requires manual review)
+      npm-major-updates:
+        patterns:
+          - '*'
+        update-types:
+          - 'major'
     commit-message:
       prefix: 'chore(deps)'
     labels:
