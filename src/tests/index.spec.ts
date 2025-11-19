@@ -28,7 +28,7 @@ describe.each(directusVersions)(
       file1Id = file1?.data.id;
       file2Id = file2?.data.id;
       console.log(`✅ Directus ${version} setup complete!`);
-    }, 120000); // Timeout específico para o beforeAll
+    }, 240000); // 4 minutes timeout for setup (increased from 2min)
 
     afterAll(async () => {
       console.log(`🧹 Cleaning up Directus ${version}...`);

@@ -107,32 +107,61 @@ export async function teardownTestEnvironment() {
   }
 }
 
-async function waitForBootstrap(retries = 60, delay = 2000) {
+async function waitForBootstrap(retries = 90, delay = 2000) {
+  logger.info(`Waiting for Directus to start (max ${(retries * delay) / 1000}s)...`);
+
   for (let i = 0; i < retries; i++) {
     try {
       logger.debug(`Connection attempt ${i + 1}/${retries}`);
 
       // Check if server is responding
-      const healthCheck = await axios.get(`${testEnv.DIRECTUS_PUBLIC_URL}/server/health`);
+      const healthCheck = await axios.get(`${testEnv.DIRECTUS_PUBLIC_URL}/server/health`, {
+        timeout: 5000,
+      });
+
       if (healthCheck.data.status !== 'ok') {
+        logger.debug(`Health check returned: ${JSON.stringify(healthCheck.data)}`);
         throw new Error('Health check failed');
       }
 
+      logger.debug('Health check OK, attempting authentication...');
+
       // Try to login to verify if the system is fully ready
       try {
-        await axios.post(`${testEnv.DIRECTUS_PUBLIC_URL}/auth/login`, {
-          email: testEnv.DIRECTUS_ADMIN_EMAIL,
-          password: testEnv.DIRECTUS_ADMIN_PASSWORD,
-        });
-        logger.info('Directus is ready and accepting authentication');
+        await axios.post(
+          `${testEnv.DIRECTUS_PUBLIC_URL}/auth/login`,
+          {
+            email: testEnv.DIRECTUS_ADMIN_EMAIL,
+            password: testEnv.DIRECTUS_ADMIN_PASSWORD,
+          },
+          { timeout: 5000 }
+        );
+        logger.info(`Directus is ready (took ${(i + 1) * delay / 1000}s)`);
         return;
-      } catch (loginError) {
+      } catch (loginError: any) {
+        logger.debug(`Login attempt failed: ${loginError.message}`);
         throw new Error('System not ready for authentication');
       }
     } catch (error: any) {
       if (i === retries - 1) {
-        logger.error('Failed to connect to Directus', error);
-        throw new Error('Directus failed to start');
+        logger.error('Failed to connect to Directus after all retries');
+        logger.error(`Last error: ${error.message}`);
+        // Dump docker logs for debugging
+        try {
+          const composeCmd = await getDockerComposeCommand();
+          const { stdout: logs } = await execAsync(
+            `${composeCmd} -f docker-compose.test.yml logs --tail=100`
+          );
+          logger.error('Docker container logs:');
+          console.error(logs);
+        } catch (logError) {
+          logger.error('Failed to get docker logs');
+        }
+        throw new Error(`Directus failed to start after ${(retries * delay) / 1000}s`);
+      }
+      // Only show progress every 10 attempts to reduce noise
+      if (i % 10 === 0 && i > 0) {
+        logger.debug(`Still waiting... (${i}/${retries} attempts)`);
       }
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
