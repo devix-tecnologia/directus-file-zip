@@ -15,9 +15,9 @@ import { blockedDirectusVersions } from '../../src/tests/directus-versions.js';
 const fixedVersions = ['9.23.1', '9.22.4', '9.24.0', '10.8.3', '11.10.2'];
 
 // Número de dias de "cooldown" antes de adotar uma nova versão
-// Configurável via variável de ambiente DIRECTUS_VERSION_MIN_AGE_DAYS (padrão: 7 dias)
+// Configurável via variável de ambiente DIRECTUS_VERSION_MIN_AGE_DAYS (padrão: 5 dias)
 const MIN_VERSION_AGE_DAYS = parseInt(
-  process.env.DIRECTUS_VERSION_MIN_AGE_DAYS || '7',
+  process.env.DIRECTUS_VERSION_MIN_AGE_DAYS || '5',
   10,
 );
 

@@ -40,27 +40,30 @@ async function checkPackage(packageName, version = 'latest') {
   try {
     console.log(`Checking ${packageName}@${version}...`);
     const packageInfo = await getPackageInfo(packageName);
-    
-    const versionToCheck = version === 'latest' 
-      ? packageInfo['dist-tags'].latest 
-      : version;
-    
+
+    const versionToCheck =
+      version === 'latest' ? packageInfo['dist-tags'].latest : version;
+
     const publishDate = packageInfo.time[versionToCheck];
-    
+
     if (!publishDate) {
       console.log(`⚠️  Version ${versionToCheck} not found for ${packageName}`);
       return false;
     }
-    
+
     const age = getPackageAge(publishDate);
     const isOldEnough = age >= MIN_AGE_DAYS;
-    
+
     if (isOldEnough) {
-      console.log(`✅ ${packageName}@${versionToCheck} is ${age} days old (>= ${MIN_AGE_DAYS} days)`);
+      console.log(
+        `✅ ${packageName}@${versionToCheck} is ${age} days old (>= ${MIN_AGE_DAYS} days)`,
+      );
     } else {
-      console.log(`❌ ${packageName}@${versionToCheck} is only ${age} days old (< ${MIN_AGE_DAYS} days)`);
+      console.log(
+        `❌ ${packageName}@${versionToCheck} is only ${age} days old (< ${MIN_AGE_DAYS} days)`,
+      );
     }
-    
+
     return isOldEnough;
   } catch (error) {
     console.error(`Error checking ${packageName}:`, error.message);

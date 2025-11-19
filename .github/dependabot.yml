@@ -2,7 +2,7 @@ version: 2
 updates:
   # NPM dependencies are now managed by Renovate (see renovate.json)
   # Renovate provides better age filtering and grouping capabilities
-  
+
   # GitHub Actions - weekly checks
   - package-ecosystem: 'github-actions'
     directory: '/'

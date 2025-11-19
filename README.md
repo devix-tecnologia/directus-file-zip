@@ -222,6 +222,7 @@ This project uses **Renovate** for automated dependency updates with age filteri
 - 🔒 **Security patches**: Applied immediately (0 days)
 
 **Age filtering by dependency type:**
+
 - Production dependencies: 5 days minimum
 - Dev dependencies: 3 days minimum
 - Major updates: 7 days minimum
@@ -234,7 +235,7 @@ This project uses **Renovate** for automated dependency updates with age filteri
 
 The project automatically tests against multiple Directus versions to ensure compatibility. To prevent issues with newly released versions, we implement a **version age filter**:
 
-- **Default**: New Directus versions are only adopted after **7 days** from their release date
+- **Default**: New Directus versions are only adopted after **5 days** from their release date
 - **Configurable**: Adjust via GitHub repository variable `DIRECTUS_VERSION_MIN_AGE_DAYS`
 
 #### Why Age Filtering Matters
@@ -273,12 +274,12 @@ To customize the minimum age for Directus versions:
 1. Go to repository **Settings** → **Secrets and variables** → **Actions** → **Variables** tab
 2. Click **New repository variable**:
    - Name: `DIRECTUS_VERSION_MIN_AGE_DAYS`
-   - Value: `7` (or any number of days you prefer)
+   - Value: `5` (or any number of days you prefer)
 
 **Recommended values:**
 
 - Conservative: `14` days
-- Balanced: `7` days (default)
+- Balanced: `5` days (default)
 - Aggressive: `3` days
 
 ## 📝 License
