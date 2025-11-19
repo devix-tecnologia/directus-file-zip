@@ -15,7 +15,7 @@ services:
       - 18055:8055
     tmpfs:
       - /directus/uploads:rw,noexec,nosuid,size=64M,mode=777 # Usa memória temporária para uploads com permissões adequadas
-      - /tmp/data:rw,noexec,nosuid,size=64M # Usa memória temporária para o banco de dados
+      - /tmp/data:rw,noexec,nosuid,size=64M,mode=777 # Usa memória temporária para o banco de dados com permissões adequadas
     networks:
       - directus-test-network
 
