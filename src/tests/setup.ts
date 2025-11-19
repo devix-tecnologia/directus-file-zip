@@ -115,9 +115,12 @@ async function waitForBootstrap(retries = 90, delay = 2000) {
       logger.debug(`Connection attempt ${i + 1}/${retries}`);
 
       // Check if server is responding
-      const healthCheck = await axios.get(`${testEnv.DIRECTUS_PUBLIC_URL}/server/health`, {
-        timeout: 5000,
-      });
+      const healthCheck = await axios.get(
+        `${testEnv.DIRECTUS_PUBLIC_URL}/server/health`,
+        {
+          timeout: 5000,
+        },
+      );
 
       if (healthCheck.data.status !== 'ok') {
         logger.debug(`Health check returned: ${JSON.stringify(healthCheck.data)}`);
@@ -134,9 +137,9 @@ async function waitForBootstrap(retries = 90, delay = 2000) {
             email: testEnv.DIRECTUS_ADMIN_EMAIL,
             password: testEnv.DIRECTUS_ADMIN_PASSWORD,
           },
-          { timeout: 5000 }
+          { timeout: 5000 },
         );
-        logger.info(`Directus is ready (took ${(i + 1) * delay / 1000}s)`);
+        logger.info(`Directus is ready (took ${((i + 1) * delay) / 1000}s)`);
         return;
       } catch (loginError: any) {
         logger.debug(`Login attempt failed: ${loginError.message}`);
@@ -150,7 +153,7 @@ async function waitForBootstrap(retries = 90, delay = 2000) {
         try {
           const composeCmd = await getDockerComposeCommand();
           const { stdout: logs } = await execAsync(
-            `${composeCmd} -f docker-compose.test.yml logs --tail=100`
+            `${composeCmd} -f docker-compose.test.yml logs --tail=100`,
           );
           logger.error('Docker container logs:');
           console.error(logs);
