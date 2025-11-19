@@ -212,13 +212,23 @@ pnpm test      # Run tests with Vitest
 
 ## 🔄 CI/CD & Automated Dependency Updates
 
-### Dependency Management with Dependabot
+### Dependency Management with Renovate
 
-This project uses **Dependabot** for automated dependency updates:
+This project uses **Renovate** for automated dependency updates with age filtering:
 
-- �� **npm packages**: Checked daily at 6 AM (São Paulo timezone)
-- 🔧 **GitHub Actions**: Checked weekly on Mondays at 6 AM
-- 🎯 **Auto-grouping**: Minor and patch updates are grouped together to reduce PR noise
+- 📦 **npm packages**: Checked weekly on Mondays at 6 AM (São Paulo timezone)
+- 🕐 **Age filtering**: Packages must be at least **5 days old** before being adopted
+- 🎯 **Auto-grouping**: Minor and patch updates are grouped together
+- 🔒 **Security patches**: Applied immediately (0 days)
+
+**Age filtering by dependency type:**
+- Production dependencies: 5 days minimum
+- Dev dependencies: 3 days minimum
+- Major updates: 7 days minimum
+- Directus packages: 5 days minimum
+- Security patches: 0 days (immediate)
+
+> To enable Renovate: Install the [Renovate GitHub App](https://github.com/apps/renovate) on your repository. Configuration is already in `renovate.json`.
 
 ### Directus Version Testing Strategy
 

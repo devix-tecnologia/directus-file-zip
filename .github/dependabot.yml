@@ -1,33 +1,8 @@
 version: 2
 updates:
-  # NPM dependencies - weekly checks with grouping
-  - package-ecosystem: 'npm'
-    directory: '/'
-    schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '06:00'
-      timezone: 'America/Sao_Paulo'
-    open-pull-requests-limit: 3
-    groups:
-      # Group all npm dependencies together (one PR per week)
-      npm-dependencies:
-        patterns:
-          - '*'
-        update-types:
-          - 'minor'
-          - 'patch'
-      # Separate group for major updates (requires manual review)
-      npm-major-updates:
-        patterns:
-          - '*'
-        update-types:
-          - 'major'
-    commit-message:
-      prefix: 'chore(deps)'
-    labels:
-      - 'dependencies'
-
+  # NPM dependencies are now managed by Renovate (see renovate.json)
+  # Renovate provides better age filtering and grouping capabilities
+  
   # GitHub Actions - weekly checks
   - package-ecosystem: 'github-actions'
     directory: '/'
