@@ -27,10 +27,10 @@ importers:
         version: 31.0.0(@types/node@24.10.0)(@unhead/vue@1.11.20(vue@3.5.18(typescript@5.9.3)))(better-sqlite3@12.4.1)(ejs@3.1.10)(encoding@0.1.13)(handlebars@4.7.8)(lodash@4.17.21)(pinia@2.3.1(typescript@5.9.3)(vue@3.5.18(typescript@5.9.3)))(terser@5.44.0)(typescript@5.9.3)(vue@3.5.18(typescript@5.9.3))(yaml@2.8.1)
       '@directus/extensions':
         specifier: ^3.0.11
-        version: 3.0.12(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@5.1.0)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)
+        version: 3.0.12(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@4.21.2)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)
       '@directus/types':
         specifier: ^13.2.3
-        version: 13.3.0(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@5.1.0)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)
+        version: 13.3.0(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@4.21.2)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)
       '@semantic-release/git':
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@24.2.9(typescript@5.9.3))
@@ -38,8 +38,8 @@ importers:
         specifier: ^11.0.6
         version: 11.0.6(semantic-release@24.2.9(typescript@5.9.3))
       '@semantic-release/npm':
-        specifier: ^12.0.2
-        version: 12.0.2(semantic-release@24.2.9(typescript@5.9.3))
+        specifier: ^13.1.2
+        version: 13.1.2(semantic-release@24.2.9(typescript@5.9.3))
       '@types/adm-zip':
         specifier: ^0.5.7
         version: 0.5.7
@@ -75,6 +75,18 @@ importers:
         version: 3.2.4(@types/node@24.10.0)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.1)
 
 packages:
+
+  '@actions/core@1.11.1':
+    resolution: {integrity: sha512-hXJCSrkwfA46Vd9Z3q4cpEpHB1rL5NG04+/rbqW9d3+CSvtB1tYe8UTpAlixa1vj0m/ULglfEK2UKxMGxCxv5A==}
+
+  '@actions/exec@1.1.1':
+    resolution: {integrity: sha512-+sCcHHbVdk93a0XT19ECtO/gIXoxvdsgQLzb2fE2/5sIZmWQuluYyjPQtrtTHdU1YzTZ7bAPN4sITq2xi1679w==}
+
+  '@actions/http-client@2.2.3':
+    resolution: {integrity: sha512-mx8hyJi/hjFvbPokCg4uRd4ZX78t+YyRPtnKWwIl+RzNaVuFpQHfmlGVfsKEJN8LwTCvL+DfVgAM04XaHkm6bA==}
+
+  '@actions/io@1.1.3':
+    resolution: {integrity: sha512-wi9JjgKLYS7U/z8PPbco+PvTb/nRWjeoFlJ1Qer83k/3C5PHQi28hiVdeE2kHXmIL99mQFawx8qt/JPjZilJ8Q==}
 
   '@authenio/samlify-node-xmllint@2.0.0':
     resolution: {integrity: sha512-V9cQ0CHqu3JwOmbSecGPUnzIES5kHxD00FEZKnWh90ksQUJG5/TscV2r9XLbKp7MlRMOSUfWxecM35xPSLFdSg==}
@@ -538,8 +550,8 @@ packages:
     resolution: {integrity: sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-validator-identifier@7.27.1':
-    resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
+  '@babel/helper-validator-identifier@7.28.5':
+    resolution: {integrity: sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/parser@7.28.4':
@@ -1254,6 +1266,10 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fastify/busboy@2.1.1':
+    resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
+    engines: {node: '>=14'}
 
   '@gar/promisify@1.1.3':
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
@@ -2220,6 +2236,12 @@ packages:
   '@semantic-release/npm@12.0.2':
     resolution: {integrity: sha512-+M9/Lb35IgnlUO6OSJ40Ie+hUsZLuph2fqXC/qrKn0fMvUU/jiCjpoL6zEm69vzcmaZJ8yNKtMBEKHWN49WBbQ==}
     engines: {node: '>=20.8.1'}
+    peerDependencies:
+      semantic-release: '>=20.1.0'
+
+  '@semantic-release/npm@13.1.2':
+    resolution: {integrity: sha512-9rtshDTNlzYrC7uSBtB1vHqFzFZaNHigqkkCH5Ls4N/BSlVOenN5vtwHYxjAR4jf1hNvWSVwL4eIFTHONYckkw==}
+    engines: {node: ^22.14.0 || >= 24.10.0}
     peerDependencies:
       semantic-release: '>=20.1.0'
 
@@ -4461,6 +4483,10 @@ packages:
     resolution: {integrity: sha512-Rw/B2DNQaPBICNXEm8balFz9a6WpZrkCGpcWFpy7nCj+NyhSdqXipmfvtmWt9xGfp0wZnBxB+iVpLmQMYt47Tw==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
+  hosted-git-info@9.0.2:
+    resolution: {integrity: sha512-M422h7o/BR3rmCQ8UHi7cyyMqKltdP9Uo+J2fXK+RSAY+wTcKOIRyhTuKv4qn+DJf3g+PL890AzId5KZpX+CBg==}
+    engines: {node: ^20.17.0 || >=22.9.0}
+
   html-entities@2.6.0:
     resolution: {integrity: sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==}
 
@@ -4989,6 +5015,10 @@ packages:
     resolution: {integrity: sha512-QIXZUBJUx+2zHUdQujWejBkcD9+cs94tLn0+YL8UrCh+D5sCXZ4c7LaEH48pNwRY3MLDgqUFyhlCyjJPf1WP0A==}
     engines: {node: 20 || >=22}
 
+  lru-cache@11.2.2:
+    resolution: {integrity: sha512-F9ODfyqML2coTIsQpSkRHnLSZMtkU8Q+mSfcaIyKwy58u+8k5nvAYeiNhsyMARvzNcXJ9QfWVrcPsC9e9rAxtg==}
+    engines: {node: 20 || >=22}
+
   lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
@@ -5346,6 +5376,10 @@ packages:
     resolution: {integrity: sha512-V6gygoYb/5EmNI+MEGrWkC+e6+Rr7mTmfHrxDbLzxQogBkgzo76rkok0Am6thgSF7Mv2nLOajAJj5vDJZEFn7g==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
+  normalize-package-data@8.0.0:
+    resolution: {integrity: sha512-RWk+PI433eESQ7ounYxIp67CYuVsS1uYSonX3kA6ps/3LWfjVQa/ptEg6Y3T6uAMq1mWpX9PQ+qx+QaHpsc7gQ==}
+    engines: {node: ^20.17.0 || >=22.9.0}
+
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -5439,6 +5473,77 @@ packages:
       - validate-npm-package-name
       - which
       - write-file-atomic
+
+  npm@11.6.2:
+    resolution: {integrity: sha512-7iKzNfy8lWYs3zq4oFPa8EXZz5xt9gQNKJZau3B1ErLBb6bF7sBJ00x09485DOvRT2l5Gerbl3VlZNT57MxJVA==}
+    engines: {node: ^20.17.0 || >=22.9.0}
+    hasBin: true
+    bundledDependencies:
+      - '@isaacs/string-locale-compare'
+      - '@npmcli/arborist'
+      - '@npmcli/config'
+      - '@npmcli/fs'
+      - '@npmcli/map-workspaces'
+      - '@npmcli/package-json'
+      - '@npmcli/promise-spawn'
+      - '@npmcli/redact'
+      - '@npmcli/run-script'
+      - '@sigstore/tuf'
+      - abbrev
+      - archy
+      - cacache
+      - chalk
+      - ci-info
+      - cli-columns
+      - fastest-levenshtein
+      - fs-minipass
+      - glob
+      - graceful-fs
+      - hosted-git-info
+      - ini
+      - init-package-json
+      - is-cidr
+      - json-parse-even-better-errors
+      - libnpmaccess
+      - libnpmdiff
+      - libnpmexec
+      - libnpmfund
+      - libnpmorg
+      - libnpmpack
+      - libnpmpublish
+      - libnpmsearch
+      - libnpmteam
+      - libnpmversion
+      - make-fetch-happen
+      - minimatch
+      - minipass
+      - minipass-pipeline
+      - ms
+      - node-gyp
+      - nopt
+      - npm-audit-report
+      - npm-install-checks
+      - npm-package-arg
+      - npm-pick-manifest
+      - npm-profile
+      - npm-registry-fetch
+      - npm-user-validate
+      - p-map
+      - pacote
+      - parse-conflict-json
+      - proc-log
+      - qrcode-terminal
+      - read
+      - semver
+      - spdx-expression-parse
+      - ssri
+      - supports-color
+      - tar
+      - text-table
+      - tiny-relative-date
+      - treeverse
+      - validate-npm-package-name
+      - which
 
   npmlog@6.0.2:
     resolution: {integrity: sha512-/vBvz5Jfr9dT/aFWd0FIRf+T/Q2WBsLENygUaFUqstqsycmZAP/t5BvFJTK0viFmSUxiUKTUplWy5vt+rvKIxg==}
@@ -6159,6 +6264,10 @@ packages:
     resolution: {integrity: sha512-MbgfoNPANMdb4oRBNg5eqLbB2t2r+o5Ua1pNt8BqGp4I0FJZhuVSOj3PaBPni4azWuSzEdNn2evevzVmEk1ohQ==}
     engines: {node: '>=18'}
 
+  read-pkg@10.0.0:
+    resolution: {integrity: sha512-A70UlgfNdKI5NSvTTfHzLQj7NJRpJ4mT5tGafkllJ4wh71oYuGm/pzphHcmW4s35iox56KSK721AihodoXSc/A==}
+    engines: {node: '>=20'}
+
   read-pkg@9.0.1:
     resolution: {integrity: sha512-9viLL4/n1BJUCT1NXVTdS1jtm80yDEgR5T4yCelII49Mbj0v1rZdKqj7zCiYdbB0CuCgdrvHcNogAKTFPBocFA==}
     engines: {node: '>=18'}
@@ -6362,6 +6471,11 @@ packages:
 
   semver@7.7.2:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.3:
+    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -6693,6 +6807,10 @@ packages:
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
 
+  tagged-tag@1.0.0:
+    resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
+    engines: {node: '>=20'}
+
   tar-fs@2.1.4:
     resolution: {integrity: sha512-mDAjwmZdh7LTT6pNleZ05Yt65HC3E+NiQzl672vQG38jIrehtJk/J3mNwIg+vShQPcLF/LV7CMnDW6vjj6sfYQ==}
 
@@ -6834,6 +6952,10 @@ packages:
   tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
 
+  tunnel@0.0.6:
+    resolution: {integrity: sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==}
+    engines: {node: '>=0.6.11 <=0.7.0 || >=0.7.3'}
+
   tus-js-client@4.3.1:
     resolution: {integrity: sha512-ZLeYmjrkaU1fUsKbIi8JML52uAocjEZtBx4DKjRrqzrZa0O4MYwT6db+oqePlspV+FxXJAyFBc/L5gwUi2OFsg==}
     engines: {node: '>=18'}
@@ -6861,6 +6983,10 @@ packages:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
     engines: {node: '>=16'}
 
+  type-fest@5.2.0:
+    resolution: {integrity: sha512-xxCJm+Bckc6kQBknN7i9fnP/xobQRsRQxR01CztFkp/h++yfVxUUcmMgfR2HttJx/dpWjS9ubVuyspJv24Q9DA==}
+    engines: {node: '>=20'}
+
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
@@ -6884,6 +7010,10 @@ packages:
 
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
+
+  undici@5.29.0:
+    resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
+    engines: {node: '>=14.0'}
 
   undici@7.13.0:
     resolution: {integrity: sha512-l+zSMssRqrzDcb3fjMkjjLGmuiiK2pMIcV++mJaAc9vhjSGpvM7h43QgP+OAMb1GImHmbPyG2tBXeuyG5iY4gA==}
@@ -7266,6 +7396,22 @@ packages:
     resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
 
 snapshots:
+
+  '@actions/core@1.11.1':
+    dependencies:
+      '@actions/exec': 1.1.1
+      '@actions/http-client': 2.2.3
+
+  '@actions/exec@1.1.1':
+    dependencies:
+      '@actions/io': 1.1.3
+
+  '@actions/http-client@2.2.3':
+    dependencies:
+      tunnel: 0.0.6
+      undici: 5.29.0
+
+  '@actions/io@1.1.3': {}
 
   '@authenio/samlify-node-xmllint@2.0.0(samlify@2.10.1)':
     dependencies:
@@ -8649,13 +8795,13 @@ snapshots:
 
   '@babel/code-frame@7.27.1':
     dependencies:
-      '@babel/helper-validator-identifier': 7.27.1
+      '@babel/helper-validator-identifier': 7.28.5
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
   '@babel/helper-string-parser@7.27.1': {}
 
-  '@babel/helper-validator-identifier@7.27.1': {}
+  '@babel/helper-validator-identifier@7.28.5': {}
 
   '@babel/parser@7.28.4':
     dependencies:
@@ -8664,7 +8810,7 @@ snapshots:
   '@babel/types@7.28.4':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
-      '@babel/helper-validator-identifier': 7.27.1
+      '@babel/helper-validator-identifier': 7.28.5
 
   '@colors/colors@1.5.0':
     optional: true
@@ -9038,10 +9184,10 @@ snapshots:
       - tedious
       - ws
 
-  '@directus/extensions@3.0.12(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@5.1.0)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)':
+  '@directus/extensions@3.0.12(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@4.21.2)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)':
     dependencies:
       '@directus/constants': 14.0.0
-      '@directus/types': 13.3.0(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@5.1.0)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)
+      '@directus/types': 13.3.0(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@4.21.2)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)
       '@directus/utils': 13.0.11(vue@3.5.18(typescript@5.9.3))
       '@types/express': 4.17.21
       fs-extra: 11.3.2
@@ -9247,7 +9393,7 @@ snapshots:
       - supports-color
       - tedious
 
-  '@directus/types@13.3.0(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@5.1.0)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)':
+  '@directus/types@13.3.0(better-sqlite3@12.4.1)(deep-diff@1.0.2)(express@4.21.2)(graphql@16.11.0)(knex@3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1))(nodemailer@7.0.5)(openapi3-ts@4.5.0)(pg@8.16.3)(pino@9.7.0)(sharp@0.34.3)(vue@3.5.18(typescript@5.9.3))(ws@8.18.3)':
     dependencies:
       '@directus/constants': 14.0.0
       '@directus/schema': 13.0.4(better-sqlite3@12.4.1)(pg@8.16.3)
@@ -9258,7 +9404,7 @@ snapshots:
       '@types/ws': 8.18.1
     optionalDependencies:
       deep-diff: 1.0.2
-      express: 5.1.0
+      express: 4.21.2
       graphql: 16.11.0
       knex: 3.1.0(better-sqlite3@12.4.1)(mysql2@3.14.3)(pg@8.16.3)(sqlite3@5.1.7)(tedious@18.6.1)
       nodemailer: 7.0.5
@@ -9572,6 +9718,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.9':
     optional: true
+
+  '@fastify/busboy@2.1.1': {}
 
   '@gar/promisify@1.1.3':
     optional: true
@@ -9975,7 +10123,7 @@ snapshots:
   '@npmcli/fs@1.1.1':
     dependencies:
       '@gar/promisify': 1.1.3
-      semver: 7.7.2
+      semver: 7.7.3
     optional: true
 
   '@npmcli/move-file@1.1.2':
@@ -10446,7 +10594,26 @@ snapshots:
       read-pkg: 9.0.1
       registry-auth-token: 5.1.0
       semantic-release: 24.2.9(typescript@5.9.3)
-      semver: 7.7.2
+      semver: 7.7.3
+      tempy: 3.1.0
+
+  '@semantic-release/npm@13.1.2(semantic-release@24.2.9(typescript@5.9.3))':
+    dependencies:
+      '@actions/core': 1.11.1
+      '@semantic-release/error': 4.0.0
+      aggregate-error: 5.0.0
+      env-ci: 11.2.0
+      execa: 9.6.0
+      fs-extra: 11.3.2
+      lodash-es: 4.17.21
+      nerf-dart: 1.0.0
+      normalize-url: 8.1.0
+      npm: 11.6.2
+      rc: 1.2.8
+      read-pkg: 10.0.0
+      registry-auth-token: 5.1.0
+      semantic-release: 24.2.9(typescript@5.9.3)
+      semver: 7.7.3
       tempy: 3.1.0
 
   '@semantic-release/release-notes-generator@14.1.0(semantic-release@24.2.9(typescript@5.9.3))':
@@ -11950,7 +12117,7 @@ snapshots:
       conventional-commits-filter: 5.0.0
       handlebars: 4.7.8
       meow: 13.2.0
-      semver: 7.7.2
+      semver: 7.7.3
 
   conventional-commits-filter@5.0.0: {}
 
@@ -13034,6 +13201,10 @@ snapshots:
     dependencies:
       lru-cache: 10.4.3
 
+  hosted-git-info@9.0.2:
+    dependencies:
+      lru-cache: 11.2.2
+
   html-entities@2.6.0: {}
 
   htmlparser2@8.0.2:
@@ -13396,7 +13567,7 @@ snapshots:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.3
-      semver: 7.7.2
+      semver: 7.7.3
 
   jwa@1.4.2:
     dependencies:
@@ -13563,6 +13734,8 @@ snapshots:
   lru-cache@10.4.3: {}
 
   lru-cache@11.1.0: {}
+
+  lru-cache@11.2.2: {}
 
   lru-cache@6.0.0:
     dependencies:
@@ -13834,7 +14007,7 @@ snapshots:
 
   node-abi@3.77.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   node-addon-api@7.1.1:
     optional: true
@@ -13867,7 +14040,7 @@ snapshots:
       nopt: 5.0.0
       npmlog: 6.0.2
       rimraf: 3.0.2
-      semver: 7.7.2
+      semver: 7.7.3
       tar: 6.2.1
       which: 2.0.2
     transitivePeerDependencies:
@@ -13963,7 +14136,13 @@ snapshots:
   normalize-package-data@6.0.2:
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.7.2
+      semver: 7.7.3
+      validate-npm-package-license: 3.0.4
+
+  normalize-package-data@8.0.0:
+    dependencies:
+      hosted-git-info: 9.0.2
+      semver: 7.7.3
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -13984,6 +14163,8 @@ snapshots:
       unicorn-magic: 0.3.0
 
   npm@10.9.4: {}
+
+  npm@11.6.2: {}
 
   npmlog@6.0.2:
     dependencies:
@@ -14443,7 +14624,7 @@ snapshots:
       pm2-deploy: 1.0.2
       pm2-multimeter: 0.1.2
       promptly: 2.2.0
-      semver: 7.7.2
+      semver: 7.7.3
       source-map-support: 0.5.21
       sprintf-js: 1.1.2
       vizion: 2.2.1
@@ -14795,6 +14976,14 @@ snapshots:
       read-pkg: 9.0.1
       type-fest: 4.41.0
 
+  read-pkg@10.0.0:
+    dependencies:
+      '@types/normalize-package-data': 2.4.4
+      normalize-package-data: 8.0.0
+      parse-json: 8.3.0
+      type-fest: 5.2.0
+      unicorn-magic: 0.3.0
+
   read-pkg@9.0.1:
     dependencies:
       '@types/normalize-package-data': 2.4.4
@@ -15126,7 +15315,7 @@ snapshots:
 
   semver-diff@5.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   semver-regex@4.0.5: {}
 
@@ -15135,6 +15324,8 @@ snapshots:
       lru-cache: 6.0.0
 
   semver@7.7.2: {}
+
+  semver@7.7.3: {}
 
   send@0.19.0:
     dependencies:
@@ -15213,7 +15404,7 @@ snapshots:
     dependencies:
       color: 4.2.3
       detect-libc: 2.1.1
-      semver: 7.7.2
+      semver: 7.7.3
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.3
       '@img/sharp-darwin-x64': 0.34.3
@@ -15553,6 +15744,8 @@ snapshots:
   systeminformation@5.27.10:
     optional: true
 
+  tagged-tag@1.0.0: {}
+
   tar-fs@2.1.4:
     dependencies:
       chownr: 1.1.4
@@ -15730,6 +15923,8 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
+  tunnel@0.0.6: {}
+
   tus-js-client@4.3.1:
     dependencies:
       buffer-from: 1.1.2
@@ -15755,6 +15950,10 @@ snapshots:
 
   type-fest@4.41.0: {}
 
+  type-fest@5.2.0:
+    dependencies:
+      tagged-tag: 1.0.0
+
   type-is@1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -15774,6 +15973,10 @@ snapshots:
     optional: true
 
   undici-types@7.16.0: {}
+
+  undici@5.29.0:
+    dependencies:
+      '@fastify/busboy': 2.1.1
 
   undici@7.13.0: {}
 
