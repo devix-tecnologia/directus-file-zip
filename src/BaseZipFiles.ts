@@ -1,19 +1,15 @@
 import { resolve } from 'path';
 import { randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import AdmZip from 'adm-zip';
 import { readdir } from 'fs/promises';
-
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export class BaseZipFiles {
   protected _tempFolder: string;
 
   constructor() {
-    this._tempFolder = resolve(__dirname, 'temp', randomUUID());
+    this._tempFolder = resolve(tmpdir(), 'directus-zip-files', randomUUID());
   }
 
   async zip(zipFilename: string, fileTitle: string = zipFilename): Promise<string> {
