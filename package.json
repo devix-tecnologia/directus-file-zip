@@ -41,28 +41,28 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@directus/api": "^32.1.1",
-    "@directus/extensions": "^3.0.14",
-    "@directus/types": "^13.4.0",
+    "@directus/api": "^34.0.0",
+    "@directus/extensions": "^3.0.20",
+    "@directus/types": "^14.3.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^12.0.2",
-    "@semantic-release/npm": "^13.1.2",
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/npm": "^13.1.5",
     "@types/adm-zip": "^0.5.7",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.3.3",
     "assert": "^2.1.0",
-    "dotenv": "^17.2.3",
-    "prettier": "^3.7.4",
-    "semantic-release": "^25.0.2",
+    "dotenv": "^17.3.1",
+    "prettier": "^3.8.1",
+    "semantic-release": "^25.0.3",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vite": "^7.2.6",
-    "vitest": "^4.0.15"
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
-    "axios": "^1.13.2",
-    "better-sqlite3": "^12.5.0"
+    "axios": "^1.13.6",
+    "better-sqlite3": "^12.6.2"
   },
   "publishConfig": {
     "type": "git",
