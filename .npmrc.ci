@@ -1,0 +1,6 @@
+# pnpm configuration for CI/CD
+auto-install-peers=true
+strict-peer-dependencies=false
+
+# Use only public npm registry for CI
+registry=https://registry.npmjs.org/
