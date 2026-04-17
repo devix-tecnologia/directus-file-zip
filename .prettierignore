@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+dist/
+
+# Lockfiles - auto-generated, formatting varies by environment
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Build outputs
+*.tsbuildinfo
+coverage/
+.turbo/
