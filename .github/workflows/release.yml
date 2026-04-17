@@ -10,8 +10,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -31,8 +29,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -59,8 +55,6 @@ jobs:
   update-directus-versions:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v6
         with:
@@ -93,8 +87,6 @@ jobs:
     needs: [lint, test]
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
