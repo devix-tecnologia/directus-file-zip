@@ -23,7 +23,7 @@ importers:
         specifier: ^0.5.17
         version: 0.5.17
       axios:
-        specifier: ^1.15.0
+        specifier: '>=1.15.0'
         version: 1.15.0
       better-sqlite3:
         specifier: ^12.9.0
