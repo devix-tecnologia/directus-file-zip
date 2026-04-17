@@ -5,6 +5,7 @@
     "target": "ES2022",
     "module": "Node16",
     "moduleResolution": "node16",
+    "rootDir": "./src",
     "outDir": "./dist/esm",
     "declarationDir": "./dist/esm/types",
     "types": ["node"],

@@ -1,19 +1,10 @@
 services:
-  database:
-    image: nouchka/sqlite3
-    restart: unless-stopped
-    volumes:
-      - ./data/sqlite:/data
-
   directus:
     restart: unless-stopped
-    image: directus/directus:9.23.1
+    image: directus/directus:11.17.3
     environment:
       DB_CLIENT: 'sqlite3'
-      DB_HOST: 'database'
-      DB_DATABASE: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
+      DB_FILENAME: '/directus/database/data.db'
       KEY: ${DIRECTUS_KEY}
       SECRET: ${DIRECTUS_SECRET}
       ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL}
@@ -24,8 +15,8 @@ services:
       EXTENSIONS_PATH: './extensions'
     ports:
       - 18055:8055
-    depends_on:
-      - database
+    volumes:
+      - ./data/sqlite:/directus/database
     networks:
       - directus-network
 
