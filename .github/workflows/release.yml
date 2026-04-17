@@ -11,28 +11,30 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 22.20.0
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.17.1
+          version: 10.33.0
           run_install: false
       - run: pnpm install
       - run: pnpm lint
       - run: pnpm typecheck
+      - name: Security audit
+        run: pnpm audit --audit-level=high
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 22.20.0
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.17.1
+          version: 10.33.0
           run_install: false
       - run: pnpm install
       - name: Start Docker Compose
@@ -50,7 +52,7 @@ jobs:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v6
@@ -58,7 +60,7 @@ jobs:
           node-version: 22.20.0
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.17.1
+          version: 10.33.0
           run_install: false
       - run: pnpm install
       - name: Update Directus versions in tests
@@ -80,13 +82,13 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 22.20.0
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.17.1
+          version: 10.33.0
           run_install: false
       - run: pnpm install
       - name: Release

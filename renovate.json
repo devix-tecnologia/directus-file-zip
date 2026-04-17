@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "description": "Note: Security fixes for transitive dependencies are managed via pnpm.overrides in package.json",
   "minimumReleaseAge": "5 days",
   "internalChecksFilter": "strict",
   "prConcurrentLimit": 3,

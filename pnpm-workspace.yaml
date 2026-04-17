@@ -4,6 +4,7 @@ onlyBuiltDependencies:
   - esbuild
   - isolated-vm
   - oracledb
+  - protobufjs
   - sharp
   - sqlite3
   - unrs-resolver
