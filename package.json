@@ -56,12 +56,12 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
-    "vite": "^8.0.8",
+    "vite": "^8.0.9",
     "vitest": "^4.1.4"
   },
   "dependencies": {
     "adm-zip": "^0.5.17",
-    "axios": "^1.15.0",
+    "axios": "^1.15.1",
     "better-sqlite3": "^12.9.0"
   },
   "pnpm": {
