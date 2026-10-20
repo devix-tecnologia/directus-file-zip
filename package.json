@@ -40,43 +40,34 @@
     }
   ],
   "license": "MIT",
+  "packageManager": "pnpm@10.34.7",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
   "devDependencies": {
-    "@directus/api": "^35.1.0",
-    "@directus/extensions": "^3.0.24",
-    "@directus/types": "^15.0.2",
+    "@directus/api": "^40.0.0",
+    "@directus/extensions": "^4.0.6",
+    "@directus/types": "^18.0.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^12.0.6",
-    "@semantic-release/npm": "^13.1.5",
-    "@types/adm-zip": "^0.5.8",
-    "@types/node": "^25.6.0",
+    "@semantic-release/github": "^12.0.10",
+    "@semantic-release/npm": "^13.2.0",
+    "@types/node": "^25.9.9",
     "assert": "^2.1.0",
     "dotenv": "^17.4.2",
-    "prettier": "^3.8.3",
-    "semantic-release": "^25.0.3",
+    "prettier": "^3.9.10",
+    "semantic-release": "^25.0.9",
+    "taskin": "^5.0.0",
     "ts-node": "^10.9.2",
-    "tsx": "^4.21.0",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "vite": "^8.0.9",
-    "vitest": "^4.1.4"
+    "vite": "^8.3.4",
+    "vitest": "^4.1.12"
   },
   "dependencies": {
-    "adm-zip": "^0.5.17",
-    "axios": "^1.15.1",
-    "better-sqlite3": "^12.9.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "fast-xml-parser": ">=5.5.7",
-      "tar": ">=7.5.11",
-      "path-to-regexp@<0.1.13": ">=0.1.13",
-      "lodash-es": ">=4.18.0",
-      "unhead": ">=2.1.13",
-      "axios": ">=1.15.0",
-      "qs": ">=6.14.2",
-      "srvx": ">=0.11.13",
-      "@tootallnate/once": ">=3.0.1",
-      "pm2": "6.0.14"
-    }
+    "adm-zip": "^0.6.1",
+    "axios": "^1.20.0",
+    "better-sqlite3": "^12.11.1"
   },
   "publishConfig": {
     "type": "git",
