@@ -114,20 +114,17 @@ async function waitForBootstrap(retries = 90, delay = 2000) {
     try {
       logger.debug(`Connection attempt ${i + 1}/${retries}`);
 
-      // Check if server is responding
-      const healthCheck = await axios.get(
-        `${testEnv.DIRECTUS_PUBLIC_URL}/server/health`,
-        {
-          timeout: 5000,
-        },
-      );
+      // Check if server is responding (/server/health requires auth since Directus 12)
+      const ping = await axios.get(`${testEnv.DIRECTUS_PUBLIC_URL}/server/ping`, {
+        timeout: 5000,
+      });
 
-      if (healthCheck.data.status !== 'ok') {
-        logger.debug(`Health check returned: ${JSON.stringify(healthCheck.data)}`);
-        throw new Error('Health check failed');
+      if (ping.data !== 'pong') {
+        logger.debug(`Ping returned: ${JSON.stringify(ping.data)}`);
+        throw new Error('Ping failed');
       }
 
-      logger.debug('Health check OK, attempting authentication...');
+      logger.debug('Ping OK, attempting authentication...');
 
       // Try to login to verify if the system is fully ready
       try {

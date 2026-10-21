@@ -162,9 +162,9 @@ createZipFile();
 
 ### Prerequisites
 
-- Node.js 18+
+- [asdf](https://asdf-vm.com) (Node.js and pnpm versions are pinned in `.tool-versions`)
 - Docker and Docker Compose
-- pnpm (recommended) or npm
+- pnpm (run `asdf install` in the project root)
 
 ### Setup Test Environment
 

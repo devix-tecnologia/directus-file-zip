@@ -1,8 +1,9 @@
+# isolated-vm is intentionally not built: it only comes from @directus/api (used for types)
+# and its native build fails on Node 24 (requires C++20).
 onlyBuiltDependencies:
   - argon2
   - better-sqlite3
   - esbuild
-  - isolated-vm
   - oracledb
   - protobufjs
   - sharp
@@ -10,9 +11,19 @@ onlyBuiltDependencies:
   - unrs-resolver
   - vue-demi
 
+# Security overrides for transitive dependencies (keep them here, not in package.json "pnpm" field).
+# Review and drop entries once upstream (mostly @directus/api) ships patched versions.
 overrides:
-  '@modelcontextprotocol/sdk@<1.24.0': '>=1.24.0'
-  axios@<1.12.0: '>=1.12.0'
-  js-yaml@>=4.0.0 <4.1.1: '>=4.1.1'
-  nodemailer@<=7.0.10: '>=7.0.11'
-  vite@>=7.1.0 <=7.1.4: '>=7.1.5'
+  '@ai-sdk/provider-utils@>=4.0.0 <4.0.33': '>=4.0.33 <5'
+  '@opentelemetry/core@>=2.0.0 <2.8.0': '>=2.8.0 <3'
+  basic-ftp: '>=6.2.1'
+  js-yaml@>=4.0.0 <4.3.2: '>=4.3.2 <5'
+  tar: '>=7.5.21'
+  uuid@<11.1.1: '>=11.1.1'
+
+# Advisories with no patched release, reachable only through devDependencies (@directus/api).
+# They are not shipped with the published package. Re-check periodically.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-vfj7-8cjw-p6xm # braces (via pm2 > chokidar)
+    - GHSA-hp3w-g68c-fv3c # sprintf-js (via tedious)

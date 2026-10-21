@@ -1,0 +1,15 @@
+{
+  "version": "1.0.3",
+  "automation": {
+    "level": "assisted",
+    "autoSync": true,
+    "ciSkipTag": "[skip ci]"
+  },
+  "provider": {
+    "type": "fs",
+    "config": {
+      "tasksDir": "TASKS",
+      "metadataStyle": "list"
+    }
+  }
+}
