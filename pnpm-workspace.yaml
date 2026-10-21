@@ -1,8 +1,9 @@
+# isolated-vm is intentionally not built: it only comes from @directus/api (used for types)
+# and its native build fails on Node 24 (requires C++20).
 onlyBuiltDependencies:
   - argon2
   - better-sqlite3
   - esbuild
-  - isolated-vm
   - oracledb
   - protobufjs
   - sharp
