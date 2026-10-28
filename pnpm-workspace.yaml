@@ -1,3 +1,10 @@
+# Advisories with no patched release, reachable only through devDependencies (@directus/api).
+# They are not shipped with the published package. Re-check periodically.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-vfj7-8cjw-p6xm # braces (via pm2 > chokidar)
+    - GHSA-hp3w-g68c-fv3c # sprintf-js (via tedious)
+    - GHSA-gcqx-w48m-w2h4 # deepmerge (via @rollup/plugin-node-resolve)
 # isolated-vm is intentionally not built: it only comes from @directus/api (used for types)
 # and its native build fails on Node 24 (requires C++20).
 onlyBuiltDependencies:
@@ -15,15 +22,15 @@ onlyBuiltDependencies:
 # Review and drop entries once upstream (mostly @directus/api) ships patched versions.
 overrides:
   '@ai-sdk/provider-utils@>=4.0.0 <4.0.33': '>=4.0.33 <5'
+  '@azure/msal-node@>=5.0.0-beta.0 <7.1.0': '>=7.1.0'
   '@opentelemetry/core@>=2.0.0 <2.8.0': '>=2.8.0 <3'
   basic-ftp: '>=6.2.1'
   js-yaml@>=4.0.0 <4.3.2: '>=4.3.2 <5'
+  nodemailer@>=3.0.0 <10.1.4: '>=10.1.4'
+  qs@>=6.7.0 <=6.16.0: '>=6.16.1'
   tar: '>=7.5.21'
+  undici@>=7.0.0 <7.30.1: '>=7.30.1'
+  undici@>=7.15.0 <7.30.1: '>=7.30.1'
+  undici@>=7.18.0 <7.30.1: '>=7.30.1'
   uuid@<11.1.1: '>=11.1.1'
-
-# Advisories with no patched release, reachable only through devDependencies (@directus/api).
-# They are not shipped with the published package. Re-check periodically.
-auditConfig:
-  ignoreGhsas:
-    - GHSA-vfj7-8cjw-p6xm # braces (via pm2 > chokidar)
-    - GHSA-hp3w-g68c-fv3c # sprintf-js (via tedious)
+  zod@<4.6.6: '>=4.6.6'

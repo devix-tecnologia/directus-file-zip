@@ -46,28 +46,28 @@
     "pnpm": ">=10"
   },
   "devDependencies": {
-    "@directus/api": "^40.0.0",
-    "@directus/extensions": "^4.0.6",
-    "@directus/types": "^18.0.0",
-    "@semantic-release/git": "^10.0.1",
+    "@directus/api": "^41.0.0",
+    "@directus/extensions": "^4.1.0",
+    "@directus/types": "^18.1.0",
+    "@semantic-release/git": "^11.0.1",
     "@semantic-release/github": "^12.0.10",
     "@semantic-release/npm": "^13.2.0",
-    "@types/node": "^25.9.9",
+    "@types/node": "^26.6.5",
     "assert": "^2.1.0",
-    "dotenv": "^17.4.2",
+    "dotenv": "^18.0.9",
     "prettier": "^3.9.10",
     "semantic-release": "^25.0.9",
     "taskin": "^5.0.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.15",
-    "typescript": "^6.0.3",
-    "vite": "^8.3.4",
-    "vitest": "^4.1.12"
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
   },
   "dependencies": {
     "adm-zip": "^0.6.1",
-    "axios": "^1.20.0",
-    "better-sqlite3": "^12.11.1"
+    "axios": "^1.21.0",
+    "better-sqlite3": "^13.0.3"
   },
   "publishConfig": {
     "type": "git",
