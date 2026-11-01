@@ -146,11 +146,12 @@ async function waitForDirectusReady(retries = 60, delay = 2000) {
     try {
       logger.debug(`Connection attempt ${i + 1}/${retries}`);
 
-      const healthCheck = await axios.get(`${publicUrl}/server/health`, {
+      // /server/health requires auth since Directus 12
+      const ping = await axios.get(`${publicUrl}/server/ping`, {
         timeout: 5000,
       });
 
-      if (healthCheck.data.status === 'ok') {
+      if (ping.data === 'pong') {
         logger.info('Directus is ready!');
         return;
       }
